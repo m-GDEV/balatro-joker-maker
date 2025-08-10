@@ -2,13 +2,15 @@ export default function Joker({ isBig, jokerName }) {
   if (isBig) {
     return (
       <div className="flex flex-col gap-10">
-        <div className="h-[25rem] w-[19rem] bg-white rounded flex flex-row p-3 pixel-corners relative">
-          <div className="absolute top-0 left-0 h-full w-full z-10 rounded thing"></div>
-          <JokerCardSideText isInverted={false} />
-          <div className="w-full h-full">
-            <img src="/sj2.jpg" className="w-4/5 mx-auto" />
+        <div className="h-[25rem] w-[19rem] rounded flex flex-row p-3 pixel-corners bg-white relative">
+          <div className="absolute top-0 left-0 h-full w-full z-10 rounded polychrome-overlay"></div>
+          <div className="flex flex-row">
+            <JokerCardSideText isInverted={false} />
+            <div className="flex items-center px-2">
+              <img src="/sj2.webp" className="" />
+            </div>
+            <JokerCardSideText isInverted={true} />
           </div>
-          <JokerCardSideText isInverted={true} />
         </div>
 
         <div className="flex flex-col items-center bg-[#3f4a4d] w-full rounded py-3 px-2 pixel-corners white">

@@ -160,11 +160,11 @@
   background: white;
 }
 
-.thing {
-  /* background: url("/joker-editions.png") -71px 0px,
-    url("joker-editions.png") 0px -055px, url("joker-editions.png") -142px 0px; */
+.polychrome-overlay {
   background-image: url("/polychrome.webp");
   background-repeat: no-repeat;
   background-size: cover;
-  opacity: 0.4;
+  background-color: white;
+  background-blend-mode: multiply;
+  opacity: 0.3;
 }
