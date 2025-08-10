@@ -10,7 +10,7 @@ function App() {
         <h1 className='text-9xl text-white body-text'>hello!</h1>
         <input className='bg-white p-3' type='text' value={jokerName} onChange={e => setJokerName(e.target.value)}/>
       </div>
-      <Joker isBig={true} />
+      <Joker isBig={true} name={"Joker"} desc={"+4 Mult"} rarity={"Common"} mainImage={"/sj2.webp"} overlay={""}/>
     </div >
   )
 }

@@ -165,6 +165,37 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-color: white;
-  background-blend-mode: multiply;
   opacity: 0.3;
+}
+.debuff-overlay {
+  background-image: url("/debuff.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* background-color: white; */
+  opacity: 0.6;
+}
+.holographic-overlay {
+  background-image: url("/holographic.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* background-color: ; */
+  opacity: 0.8;
+}
+.foil-overlay {
+  background-image: url("/foil.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* background-color: ; */
+  opacity: 0.8;
+}
+.stone-overlay {
+  background-image: url("/stone.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* background-color: white; */
+  opacity: 0.5;
+}
+/* this is shit, fixlater */
+.negative-overlay {
+    filter: invert(1);
 }

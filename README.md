@@ -4,3 +4,4 @@
 - https://efhiii.github.io/balatro-calculator/?h=IADaG0NobQoAChiDFnUzqZ1A
 - https://www.figma.com/community/file/1455582433281954119/balatro-build-your-own-joker
 - https://pixelcorners.lukeb.co.uk/?radius=6&multiplier=3&border=1&border_width=1&border_color=#ffffff
+- https://static.wikia.nocookie.net/balatrogame/images/a/a3/Editions.png/revision/latest?cb=20240226160851

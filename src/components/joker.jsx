@@ -1,35 +1,36 @@
-export default function Joker({ isBig, jokerName }) {
+export default function Joker({ isBig, name, desc, rarity, overlay, mainImage, backgroundPath}) {
   if (isBig) {
     return (
       <div className="flex flex-col gap-10">
         <div className="h-[25rem] w-[19rem] rounded flex flex-row p-3 pixel-corners bg-white relative">
-          <div className="absolute top-0 left-0 h-full w-full z-10 rounded polychrome-overlay"></div>
+          <div className={`absolute top-0 left-0 h-full w-full z-10 rounded ${overlay}`}></div>
           <div className="flex flex-row">
             <JokerCardSideText isInverted={false} />
             <div className="flex items-center px-2">
-              <img src="/sj2.webp" className="" />
+              <img src={`${mainImage}`} className="" />
             </div>
             <JokerCardSideText isInverted={true} />
           </div>
         </div>
 
         <div className="flex flex-col items-center bg-[#3f4a4d] w-full rounded py-3 px-2 pixel-corners white">
-          <span className="text-white text-5xl">Razor</span>
+          <span className="text-white text-5xl">{name}</span>
           <div className="bg-white pixel-corners rounded text-[#3d5458] w-full text-center text-3xl">
-            <span className="rounded pl-1 pt-1 bg-red-500 text-white">X3</span>{" "}
-            Mult
+            {/* <span className="rounded pl-1 pt-1 bg-red-500 text-white">X3</span> */}
+            {desc}
+            {/* Mult
             <br />
             Destroy this if played
             <br />
             hand contains any
             <br />
             cards that don't score
-            <br />
+            <br /> */}
           </div>
           <div className="pixel-corners w-3/4">
             <div className="bg-[#34bc85] pixel-corners px-3 rounded text-center mt-2">
               <span className="text-white text-4xl text-shadow-lg">
-                Uncommon
+                {rarity}
               </span>
             </div>
           </div>
