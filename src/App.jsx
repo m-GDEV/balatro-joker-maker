@@ -1,10 +1,18 @@
+import { useEffect } from "react";
 import JokerMaker from "./components/JokerMaker";
+import { useState } from "react";
 
 export default function App() {
+
+  let bg = ChooseRandomBackground();
+  const [bgPath, setBgPath] = useState(bg);
+
+
   return (
     <div
       id="app"
-      className="body-text flex flex-col items-center justify-around bg-[url(/bg.webp)] h-dvh w-full bg-cover bg-center bg-repeat-y crt"
+      className="body-text flex flex-col items-center justify-around h-dvh w-full bg-cover bg-center bg-repeat-y crt"
+      style={{backgroundImage: `url('${bgPath == "" ? "/bg1.webp" : bgPath}')`}}
     >
       <h1 className="body-text text-8xl tracking-wider letter-outline">Balatro Joker Maker</h1>
       <JokerMaker />
@@ -29,4 +37,14 @@ export default function App() {
       </div>
     </div>
   );
+
+function ChooseRandomBackground() {
+  const numberOfBackgrounds = 3;
+  const el = document.getElementById('app')
+  let bgNum = Math.floor(Math.random() * (numberOfBackgrounds)) + 1;
+
+  console.log(bgNum)
+
+  return `/bg${bgNum}.webp`;
+}
 }

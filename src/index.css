@@ -8,6 +8,11 @@
   }
 }
 
+html {
+    /* needed because of dynamically changing bg */
+    background-color: black;
+}
+
 /* Fonts */
 @font-face {
   font-family: m6x11;
