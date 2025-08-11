@@ -3,7 +3,7 @@ export default function Joker({ jokerInfo }) {
   if (!jokerInfo.isSmall) {
     return (
       <div
-        className={`flex flex-col gap-10 bg-[url(/bg.webp)] bg-cover bg-center bg-repeat-y p-4 rounded-xl drop-shadow-2xl max-h-[40rem] max-w-[21rem]`}
+        className={`flex flex-col gap-10 bg-[url(/bg.webp)] bg-cover bg-center bg-repeat-y p-4 rounded-xl drop-shadow-2xl min-h-[42rem] min-w-[21rem]`}
         id="JokerDiv"
       >
         <div
@@ -27,7 +27,7 @@ export default function Joker({ jokerInfo }) {
   } else {
     return (
       <div
-        className={`flex flex-col gap-10 bg-[url(/bg.webp)] bg-cover bg-center bg-repeat-y p-4 rounded-xl drop-shadow-2xl min-w-[21rem] min-h-[40rem] items-center justify-evenly`}
+        className={`flex flex-col gap-10 bg-[url(/bg.webp)] bg-cover bg-center bg-repeat-y p-4 rounded-xl drop-shadow-2xl min-w-[21rem] min-h-[42rem] items-center justify-evenly`}
         id="JokerDiv"
       >
         <div

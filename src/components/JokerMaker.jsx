@@ -58,7 +58,7 @@ export default function JokerMaker() {
   }, [jokerInfo]);
 
   return (
-    <div className="body-text  flex flex-row items-center justify-center gap-15 ">
+    <div className="body-text  flex flex-col items-center justify-center gap-15 sm:flex-row">
       {/* Edit Joker Details Form */}
       <div className="flex flex-col gap-3 max-w-[23rem] text-center bg-[#3f4a4d] p-5 rounded-xl">
         <h2 className="text-5xl pb-4">Create your custom Joker!</h2>
@@ -100,6 +100,11 @@ export default function JokerMaker() {
         </LabelAndSomething>
         <button className="px-2 py-1 mt-4 text-4xl bg-[#34bc85] text-white rounded pixel-corners" onClick={captureElement}>
           Save
+        </button>
+        <button className="px-2 py-1 mt-4 text-4xl bg-[#34bc85] text-white rounded pixel-corners" onClick={() => {
+            Navigator.share("hello!")
+        }}>
+          Share
         </button>
       </div>
 
