@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 
 export default function Joker({ jokerInfo }) {
   if (!jokerInfo.isSmall) {

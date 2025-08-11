@@ -30,3 +30,16 @@ export const captureElement = async () => {
       }
     }
   };
+
+// ModifyValueAndReturnCopy: Makes it easy to modify one property of the object in a setState call
+export function MVRC(obj, key, value, mainImageOverride = false) {
+  let copy = structuredClone(obj);
+
+  // If the value is an image, we need to encode it
+  if (key == "mainImage" && !mainImageOverride) {
+    copy[key] = URL.createObjectURL(value);
+  } else {
+    copy[key] = value;
+  }
+  return copy;
+}

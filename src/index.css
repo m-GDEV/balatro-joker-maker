@@ -30,6 +30,11 @@
   color: #4f6367;
   line-height: 1.2;
 }
+.letter-outline {
+    color: #FFFFFF;
+text-shadow: #6b6b6b 0px 0px 5px, #6e6e6e 0px 0px 10px, #666666 0px 0px 15px, #34bc85 0px 0px 20px, #34bc85 0px 0px 30px, #34bc85 0px 0px 40px, #34bc85 0px 0px 50px, #FF2D95 0px 0px 75px;
+
+}
 
 /* Checkbox styling */
 input[type='checkbox'] {
