@@ -12,8 +12,8 @@ export const captureElement = async () => {
           const canvas = await html2canvas(element, {
             useCORS: true,
             allowTaint: true,
-            backgroundColor: null,
-            scale: 2,
+            backgroundColor: '#ffffff',
+            scale: 4,
             logging: true,
             onclone: (clonedDoc) => {
               console.log('Cloned document for capture');

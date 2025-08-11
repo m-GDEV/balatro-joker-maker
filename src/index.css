@@ -8,6 +8,15 @@
   font-family: jokerFont;
   src: url(/fonts/jokerfont.ttf);
 }
+
+/* For some reason this property affects html2canvas' ability to render text. Without this change it will render text shifted downwards */
+/* https://github.com/niklasvh/html2canvas/issues/2775 */
+@layer base {
+  img {
+    @apply inline-block;
+  }
+}
+
 .body-text {
   font-family: "m6x11", sans-serif;
   font-weight: 400;
