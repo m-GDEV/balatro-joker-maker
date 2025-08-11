@@ -29,8 +29,6 @@ function App() {
     isSmall: false,
   });
 
-
-
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
@@ -64,14 +62,15 @@ function App() {
   }, [jokerInfo]);
 
   return (
-    <div className="body-text bg-[url(/bg.webp)] h-dvh w-full bg-cover bg-center bg-repeat-y flex flex-row items-center justify-center gap-5">
+    <div className="body-text bg-[url(/bg.webp)] h-dvh w-full bg-cover bg-center bg-repeat-y flex flex-row items-center justify-center gap-15 ">
       {/* Edit Joker Details Form */}
-      <div className="flex flex-col gap-3 max-w-[20rem]">
+      <div className="flex flex-col gap-3 max-w-[23rem] text-center bg-[#3f4a4d] p-5 rounded-xl">
+        <h2 className="text-5xl pb-4">Create your custom Joker!</h2>
         <TextInput label={"Name:"} value={jokerInfo.name} onChange={(e) => setJokerInfo(MVRC(jokerInfo, "name", e.target.value))} />
         <TextInput label={"Rarity:"} value={jokerInfo.rarity} onChange={(e) => setJokerInfo(MVRC(jokerInfo, "rarity", e.target.value))} />
         <TextInput label={"Description:"} value={jokerInfo.desc} onChange={(e) => setJokerInfo(MVRC(jokerInfo, "desc", e.target.value))} />
         <LabelAndSomething label={"Image:"}>
-          <label className="relative inline-block rounded bg-gray-600 px-2 py-1 cursor-pointer text-white w-full">
+          <label className="relative inline-block rounded bg-gray-600 px-2 py-1 cursor-pointer text-white w-full pixel-corners white">
             <span>Choose a file</span>
             <input
               className="top-0 left-0 absolute opacity-0"
@@ -95,24 +94,9 @@ function App() {
             })}
           </select>
         </LabelAndSomething>
-        <button
-          className="px-2 py-1 text-4xl bg-[#34bc85] text-white rounded"
-          onClick={() => PrintDiv(document.getElementById("JokerDiv"))}
-        >
+        <button className="px-2 py-1 mt-4 text-4xl bg-[#34bc85] text-white rounded pixel-corners" onClick={captureElement}>
           Save
         </button>
-        <button
-          className="px-2 py-1 text-4xl bg-[#34bc85] text-white rounded"
-          onClick={captureElement}
-        >
-          Save2
-        </button>
-          <button 
-            onClick={captureElement}
-            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-          >
-            Capture with html2canvas
-          </button>
       </div>
       <Joker jokerInfo={jokerInfo} />
       {/* <JokerDebug jokerInfo={jokerInfo} /> */}

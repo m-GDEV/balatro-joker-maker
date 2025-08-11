@@ -1,14 +1,5 @@
 @import "tailwindcss";
 
-@font-face {
-  font-family: m6x11;
-  src: url(/fonts/m6x11.ttf);
-}
-@font-face {
-  font-family: jokerFont;
-  src: url(/fonts/jokerfont.ttf);
-}
-
 /* For some reason this property affects html2canvas' ability to render text. Without this change it will render text shifted downwards */
 /* https://github.com/niklasvh/html2canvas/issues/2775 */
 @layer base {
@@ -17,6 +8,15 @@
   }
 }
 
+/* Fonts */
+@font-face {
+  font-family: m6x11;
+  src: url(/fonts/m6x11.ttf);
+}
+@font-face {
+  font-family: jokerFont;
+  src: url(/fonts/jokerfont.ttf);
+}
 .body-text {
   font-family: "m6x11", sans-serif;
   font-weight: 400;
@@ -31,6 +31,8 @@
   line-height: 1.2;
   font-size: 2rem;
 }
+
+/* Joker overlay styles */
 .polychrome-overlay {
   background-image: url("/polychrome.webp");
   background-repeat: no-repeat;
