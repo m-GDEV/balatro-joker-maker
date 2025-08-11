@@ -12,6 +12,7 @@
   font-family: "m6x11", sans-serif;
   font-weight: 400;
   font-style: normal;
+  color: white;
 }
 .joker-text {
   font-family: "jokerFont", sans-serif;
@@ -20,6 +21,45 @@
   color: #4f6367;
   line-height: 1.2;
   font-size: 2rem;
+}
+.polychrome-overlay {
+  background-image: url("/polychrome.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: white;
+  opacity: 0.3;
+}
+.debuff-overlay {
+  background-image: url("/debuff.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* background-color: white; */
+  opacity: 0.6;
+}
+.holographic-overlay {
+  background-image: url("/holographic.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* background-color: ; */
+  opacity: 0.8;
+}
+.foil-overlay {
+  background-image: url("/foil.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* background-color: ; */
+  opacity: 0.8;
+}
+.stone-overlay {
+  background-image: url("/stone.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* background-color: white; */
+  opacity: 0.5;
+}
+/* this is shit, fixlater */
+.negative-overlay {
+    filter: invert(1);
 }
 
 .pixel-corners,
@@ -158,44 +198,4 @@
 }
 .pixel-corners.white::after {
   background: white;
-}
-
-.polychrome-overlay {
-  background-image: url("/polychrome.webp");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-color: white;
-  opacity: 0.3;
-}
-.debuff-overlay {
-  background-image: url("/debuff.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  /* background-color: white; */
-  opacity: 0.6;
-}
-.holographic-overlay {
-  background-image: url("/holographic.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  /* background-color: ; */
-  opacity: 0.8;
-}
-.foil-overlay {
-  background-image: url("/foil.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  /* background-color: ; */
-  opacity: 0.8;
-}
-.stone-overlay {
-  background-image: url("/stone.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  /* background-color: white; */
-  opacity: 0.5;
-}
-/* this is shit, fixlater */
-.negative-overlay {
-    filter: invert(1);
 }
