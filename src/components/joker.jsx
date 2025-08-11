@@ -82,7 +82,7 @@ function JokerDescription({ jokerInfo }) {
           )}
           <div className="pixel-corners w-3/4">
             {jokerInfo.rarity != "" && (
-              <div className="bg-[#34bc85] pixel-corners px-3 rounded text-center mt-2">
+              <div className={`${GetRarityBgColor(jokerInfo.rarity)} pixel-corners px-3 rounded text-center mt-2`}>
                 <span className="text-white text-4xl text-shadow-lg">{jokerInfo.rarity}</span>
               </div>
             )}
@@ -107,4 +107,19 @@ function JokerText({ isDisabled }) {
       </>
     );
   }
+}
+
+function GetRarityBgColor(rarity) {
+    switch (rarity.toLowerCase()) {
+        case "common":
+            return "bg-[#0093ff]"
+        case "uncommon":
+            return "bg-[#35bd86]"
+        case "rare":
+            return "bg-[#ff4c40]"
+        case "legendary":
+            return "bg-[#ab5bb5]"
+        default:
+            return "bg-[#0093ff]" // common colour
+    }
 }
