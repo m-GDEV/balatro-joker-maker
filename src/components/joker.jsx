@@ -3,7 +3,10 @@ import { useEffect } from "react";
 export default function Joker({ jokerInfo }) {
   if (!jokerInfo.isSmall) {
     return (
-      <div className={`flex flex-col gap-10 bg-[url(/bg.webp)] bg-cover bg-center bg-repeat-y p-4 rounded-xl drop-shadow-2xl`} id="JokerDiv">
+      <div
+        className={`flex flex-col gap-10 bg-[url(/bg.webp)] bg-cover bg-center bg-repeat-y p-4 rounded-xl drop-shadow-2xl`}
+        id="JokerDiv"
+      >
         <div
           className={`h-[25rem] w-[19rem] rounded flex flex-row p-3 pixel-corners bg-white relative ${
             jokerInfo.overlay == "negative-overlay" ? "negative-overlay" : ""
@@ -19,38 +22,75 @@ export default function Joker({ jokerInfo }) {
           </div>
         </div>
 
-        <div className="flex flex-col items-center bg-[#3f4a4d] w-full rounded py-3 px-2 pixel-corners" id="Test">
-          <span className="text-white text-5xl">{jokerInfo.name != "" ? jokerInfo.name : "Joker"}</span>
-          <div className="bg-white pixel-corners rounded text-[#3d5458] w-full text-center text-3xl">
-            {jokerInfo.desc}
-          </div>
-          <div className="pixel-corners w-3/4">
-            <div className="bg-[#34bc85] pixel-corners px-3 rounded text-center mt-2">
-              <span className="text-white text-4xl text-shadow-lg">{jokerInfo.rarity}</span>
-            </div>
-          </div>
-        </div>
+        <JokerDescription jokerInfo={jokerInfo} />
       </div>
     );
   } else {
-    return <div>pnies!</div>;
+    return (
+      <div
+        className={`flex flex-col gap-10 bg-[url(/bg.webp)] bg-cover bg-center bg-repeat-y p-4 rounded-xl drop-shadow-2xl min-w-[20rem] min-h-[36rem] items-center justify-evenly`}
+        id="JokerDiv"
+      >
+        <div
+          className={`w-[11rem] h-[14.66rem] rounded flex flex-row p-3 pixel-corners bg-white relative ${
+            jokerInfo.overlay == "negative-overlay" ? "negative-overlay" : ""
+          }`}
+        >
+          <div className={`absolute top-0 left-0 h-full w-full z-10 rounded ${jokerInfo.overlay}`}></div>
+          <div className="flex flex-row w-full">
+            <JokerCardSideText isInverted={false} isDisabled={jokerInfo.jokerTextDisabled} isSmall={jokerInfo.isSmall}/>
+            <div className="flex items-center px-2 w-full justify-center ">
+              <img src={`${jokerInfo.mainImage}`} className="" />
+            </div>
+            <JokerCardSideText isInverted={true} isDisabled={jokerInfo.jokerTextDisabled} isSmall={jokerInfo.isSmall} />
+          </div>
+        </div>
+
+        <JokerDescription jokerInfo={jokerInfo} />
+      </div>
+    );
   }
 }
 
-function JokerCardSideText({ isInverted, isDisabled }) {
+function JokerCardSideText({ isInverted, isDisabled, isSmall }) {
   if (isInverted) {
     return (
-      <div className="flex flex-col items-start" style={{ transform: "rotate(180deg) scaleX(-1)" }}>
+      <div className={`flex flex-col items-start ${isSmall ? "text-[1.25rem]" : "text-[2rem]"}`} style={{ transform: "rotate(180deg) scaleX(-1)" }}>
         <JokerText isDisabled={isDisabled} />
       </div>
     );
   } else {
     return (
-      <div className="flex flex-col items-start">
+      <div className={`flex flex-col items-start ${isSmall ? "text-[1.25rem]" : "text-[2rem]"}`}>
         <JokerText isDisabled={isDisabled} />
       </div>
     );
   }
+}
+
+function JokerDescription({ jokerInfo }) {
+  {
+    /* This basically hides each individual component if it is not populated. Easily allows you to only show the joker card*/
+  }
+  return (
+    <>
+      {(jokerInfo.name != "" || jokerInfo.desc != "" || jokerInfo.rarity != "") && (
+        <div className="flex flex-col items-center bg-[#3f4a4d] w-full rounded py-3 px-2 pixel-corners" id="Test">
+          {jokerInfo.name != "" && <span className="text-white text-5xl">{jokerInfo.name != "" ? jokerInfo.name : "Joker"}</span>}
+          {jokerInfo.desc != "" && (
+            <div className="bg-white pixel-corners rounded text-[#3d5458] w-full text-center text-3xl">{jokerInfo.desc}</div>
+          )}
+          <div className="pixel-corners w-3/4">
+            {jokerInfo.rarity != "" && (
+              <div className="bg-[#34bc85] pixel-corners px-3 rounded text-center mt-2">
+                <span className="text-white text-4xl text-shadow-lg">{jokerInfo.rarity}</span>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+    </>
+  );
 }
 
 function JokerText({ isDisabled }) {

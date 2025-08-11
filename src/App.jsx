@@ -5,7 +5,6 @@ import TextInput from "./components/TextInput";
 import LabelAndSomething from "./components/LabelAndSomething";
 import { useRef } from "react";
 import { captureElement } from "./lib/helperFunctions";
-import JokerDebug from "./components/joker2";
 import html2canvas from "html2canvas";
 
 function App() {
@@ -81,7 +80,7 @@ function App() {
         </LabelAndSomething>
         <LabelAndSomething label={"Edition:"}>
           <select
-            className="bg-white px-2 py-1 text-black rounded-sm w-full"
+            className="bg-white px-2 py-1 text-black rounded-sm w-full pixel-corners"
             value={jokerInfo.overlay}
             onChange={(e) => setJokerInfo(MVRC(jokerInfo, "overlay", e.target.value))}
           >
@@ -94,12 +93,16 @@ function App() {
             })}
           </select>
         </LabelAndSomething>
+        <LabelAndSomething label={"Wee?"}>
+            <input className="p-3 pixel-corners self-end" type="checkbox" checked={jokerInfo.isSmall} onChange={((e) => setJokerInfo(MVRC(jokerInfo, 'isSmall', !jokerInfo.isSmall)))} />
+        </LabelAndSomething>
         <button className="px-2 py-1 mt-4 text-4xl bg-[#34bc85] text-white rounded pixel-corners" onClick={captureElement}>
           Save
         </button>
       </div>
+
+      {/* Joker side */}
       <Joker jokerInfo={jokerInfo} />
-      {/* <JokerDebug jokerInfo={jokerInfo} /> */}
     </div>
   );
 }

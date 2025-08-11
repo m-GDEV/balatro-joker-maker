@@ -29,7 +29,17 @@
   font-style: normal;
   color: #4f6367;
   line-height: 1.2;
-  font-size: 2rem;
+}
+
+/* Checkbox styling */
+input[type='checkbox'] {
+    -webkit-appearance:none;
+    width:3rem;
+    height:3rem;
+    background:white;
+}
+input[type='checkbox']:checked {
+    background: #ffb74f;
 }
 
 /* Joker overlay styles */
