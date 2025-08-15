@@ -1,4 +1,6 @@
 import html2canvas from "html2canvas";
+import * as htmlToImage from 'html-to-image';
+import { toPng, toJpeg, toBlob, toPixelData, toSvg } from 'html-to-image';
 
 export const captureElement = async () => {
     console.log("got here")
@@ -30,6 +32,18 @@ export const captureElement = async () => {
       }
     }
   };
+
+  export function captureImage() {
+    htmlToImage.toPng(document.getElementById('JokerDiv'))
+      .then(function (dataUrl) {
+        var link = document.createElement('a');
+        link.download = 'joker-image.png';
+        link.href = dataUrl;
+        link.click();
+      }).catch(function (error) {
+        alert('oops, something went wrong!', error);
+      });
+  }
 
 // ModifyValueAndReturnCopy: Makes it easy to modify one property of the object in a setState call
 export function MVRC(obj, key, value, mainImageOverride = false) {

@@ -60,7 +60,7 @@ export default function JokerMaker() {
   }, [jokerInfo]);
 
   return (
-    <div className="body-text  flex flex-col items-center justify-center gap-15 sm:flex-row">
+    <div className="body-text  flex flex-col justify-center gap-15 sm:flex-row">
       {/* Edit Joker Details Form */}
       <div className="flex flex-col gap-2 max-w-[23rem] text-center bg-[#3f4a4d] p-5 rounded-xl">
         <h2 className="text-5xl pb-4">Create your custom Joker!</h2>
@@ -100,10 +100,10 @@ export default function JokerMaker() {
             onChange={(e) => setJokerInfo(MVRC(jokerInfo, "isSmall", !jokerInfo.isSmall))}
           />
         </LabelAndSomething>
-        <button className="text-white pbbo green clicky big" onClick={captureElement}>
+        <button className="text-white pbbo green clicky big w-full max-w-3/4 self-center" onClick={captureElement}>
           <span className="text-4xl">Save</span>
         </button>
-        <button className="text-white pbbo green clicky big" onClick={() => {
+        <button className="text-white pbbo blue clicky big w-full max-w-3/4 self-center" onClick={() => {
             Navigator.share("hello!")
         }}>
           <span className="text-4xl">Share</span>
