@@ -30,7 +30,9 @@ export default function JokerMaker() {
   useEffect(() => {
     const url = new URL(window.location);
     const info = url.searchParams.get("jokerInfo");
-    setJokerInfo(JSON.parse(info));
+    if (info != undefined) {
+      setJokerInfo(JSON.parse(info));
+    }
     setReady(true);
   }, []);
 
