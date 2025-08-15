@@ -74,15 +74,15 @@ function JokerDescription({ jokerInfo }) {
   return (
     <>
       {(jokerInfo.name != "" || jokerInfo.desc != "" || jokerInfo.rarity != "") && (
-        <div className="flex flex-col h-full justify-between items-center bg-[#3f4a4d] w-full rounded py-3 px-2 white" id="Test">
+        <div className="flex flex-col gap-3 items-center bg-[#3f4a4d] w-full rounded py-3 px-2 pixel-corners white" id="Test">
           {jokerInfo.name != "" && <span className="text-white text-5xl">{jokerInfo.name != "" ? jokerInfo.name : "Joker"}</span>}
           {jokerInfo.desc != "" && (
             <div className="bg-white pixel-corners rounded text-[#3d5458] w-full text-center text-3xl">{jokerInfo.desc}</div>
           )}
           <div className="w-3/4">
             {jokerInfo.rarity != "" && (
-              <div className={`${GetRarityBgColor(jokerInfo.rarity)} text-center pbbo green clicky big`}>
-                <span className="text-white text-4xl text-shadow-lg">{jokerInfo.rarity}</span>
+              <div className={`${GetRarityBgColor(jokerInfo.rarity)} text-center pbbo green big`}>
+                <span className="text-white text-4xl ">{jokerInfo.rarity}</span>
               </div>
             )}
           </div>

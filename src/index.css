@@ -105,6 +105,232 @@ input[type='checkbox']:checked {
   filter: invert(1);
 }
 
+/* Pixelated border, bottom only (just like me fr) */
+.pbbo {
+  /* Bottom border color */
+  background: var(--pixel-bg);
+  box-shadow:
+
+    /* Inner Background Color */
+    /* box-shadow: [horizontal-offset] [vertical-offset] [blur] [spread] [color]; */
+    0 calc(var(--pixel-size) * -1) 0 calc(var(--pixel-size) * -0.5) var(--pixel-bg),
+    0 calc(var(--pixel-size) * 1) 0 calc(var(--pixel-size) * -0.5) var(--pixel-bg),
+    0 calc(var(--pixel-size) * -1.5) 0 calc(var(--pixel-size) * -1) var(--pixel-bg),
+    0 calc(var(--pixel-size) * 1.5) 0 calc(var(--pixel-size) * -1) var(--pixel-bg),
+
+    /* Bottom border color: --pixel-border */
+    0 calc(var(--pixel-size) * 1) 0 0 var(--pixel-border),
+    0 calc(var(--pixel-size) * 2.5) 0 calc(var(--pixel-size) * -1.25) var(--pixel-border);
+}
+
+.pbbo.small {
+  /* Because we're using a box shadow as the border it will overlap with other elements. */
+  /* We use margin here to simulate the normal boundary of the button */
+  margin: 1% 0;
+}
+
+.pbbo.big {
+  margin: 2.25% 0;
+}
+
+/* Uncommon Joker (this one has comments, the others do not for simplicity */
+.pbbo.green {
+  /* Store original color in HSL */
+  --base-hue: 156;
+  --base-sat: 57%;
+  --base-light: 47%;
+
+  /* Adjusted values */
+  --adjusted-light: calc(var(--base-light) * 0.67);
+  --adjusted-hue: calc(var(--base-hue) * 1.01463);
+
+  /* Final colors */
+  --pixel-bg: hsl(var(--base-hue), var(--base-sat), var(--base-light));
+
+  /* This color is used for the bottom as a shadow, it is derived by modifying the original color */
+  --pixel-border: hsl(var(--adjusted-hue), var(--base-sat), var(--adjusted-light));
+}
+
+.pbbo.blue {
+  --base-hue: 205;
+  --base-sat: 100%;
+  --base-light: 50%;
+  --adjusted-light: calc(var(--base-light) * 0.67);
+  --adjusted-hue: calc(var(--base-hue) * 1.01463);
+  --pixel-bg: hsl(var(--base-hue), var(--base-sat), var(--base-light));
+  --pixel-border: hsl(var(--adjusted-hue), var(--base-sat), var(--adjusted-light));
+}
+
+/* Clicky Button */
+.clicky {
+  border: 0;
+  cursor: pointer;
+  transition-property: all;
+  transition-timing-function: var(cubic-bezier(0.4, 0, 0.2, 1));
+  transition-duration: 80ms;
+  user-select: none;
+}
+
+.clicky:active {
+  /* By removing the bottom border, we create the illusion of a click */
+  box-shadow:
+    /* Inner Background Color */
+    0 calc(var(--pixel-size) * -1) 0 calc(var(--pixel-size) * -0.5) var(--pixel-bg),
+    0 calc(var(--pixel-size) * 1) 0 calc(var(--pixel-size) * -0.5) var(--pixel-bg),
+    0 calc(var(--pixel-size) * -1.5) 0 calc(var(--pixel-size) * -1) var(--pixel-bg),
+    0 calc(var(--pixel-size) * 1.5) 0 calc(var(--pixel-size) * -1) var(--pixel-bg);
+}
+
+.clicky:hover {
+  opacity: 0.95;
+}
+
+.clicky:active,
+.clicky:focus {
+  /** Remove Chrome's Ugly Yellow Outline **/
+  outline: 0;
+}
+
+/* Colored border across all sides */
+/* Pixlated borders */
+.pixel-corners,
+.pixel-corners--wrapper {
+  clip-path: polygon(0px calc(100% - 12px),
+      3px calc(100% - 12px),
+      3px calc(100% - 6px),
+      6px calc(100% - 6px),
+      6px calc(100% - 3px),
+      12px calc(100% - 3px),
+      12px 100%,
+      calc(100% - 12px) 100%,
+      calc(100% - 12px) calc(100% - 3px),
+      calc(100% - 6px) calc(100% - 3px),
+      calc(100% - 6px) calc(100% - 6px),
+      calc(100% - 3px) calc(100% - 6px),
+      calc(100% - 3px) calc(100% - 12px),
+      100% calc(100% - 12px),
+      100% 12px,
+      calc(100% - 3px) 12px,
+      calc(100% - 3px) 6px,
+      calc(100% - 6px) 6px,
+      calc(100% - 6px) 3px,
+      calc(100% - 12px) 3px,
+      calc(100% - 12px) 0px,
+      12px 0px,
+      12px 3px,
+      6px 3px,
+      6px 6px,
+      3px 6px,
+      3px 12px,
+      0px 12px);
+  position: relative;
+}
+
+.pixel-corners {
+  border: 3px solid transparent;
+}
+
+.pixel-corners--wrapper {
+  width: fit-content;
+  height: fit-content;
+}
+
+.pixel-corners--wrapper .pixel-corners {
+  display: block;
+  clip-path: polygon(3px 12px,
+      6px 12px,
+      6px 6px,
+      12px 6px,
+      12px 3px,
+      calc(100% - 12px) 3px,
+      calc(100% - 12px) 6px,
+      calc(100% - 6px) 6px,
+      calc(100% - 6px) 12px,
+      calc(100% - 3px) 12px,
+      calc(100% - 3px) calc(100% - 12px),
+      calc(100% - 6px) calc(100% - 12px),
+      calc(100% - 6px) calc(100% - 6px),
+      calc(100% - 12px) calc(100% - 6px),
+      calc(100% - 12px) calc(100% - 3px),
+      12px calc(100% - 3px),
+      12px calc(100% - 6px),
+      6px calc(100% - 6px),
+      6px calc(100% - 12px),
+      3px calc(100% - 12px));
+}
+
+.pixel-corners::after,
+.pixel-corners--wrapper::after {
+  content: "";
+  position: absolute;
+  clip-path: polygon(0px calc(100% - 12px),
+      3px calc(100% - 12px),
+      3px calc(100% - 6px),
+      6px calc(100% - 6px),
+      6px calc(100% - 3px),
+      12px calc(100% - 3px),
+      12px 100%,
+      calc(100% - 12px) 100%,
+      calc(100% - 12px) calc(100% - 3px),
+      calc(100% - 6px) calc(100% - 3px),
+      calc(100% - 6px) calc(100% - 6px),
+      calc(100% - 3px) calc(100% - 6px),
+      calc(100% - 3px) calc(100% - 12px),
+      100% calc(100% - 12px),
+      100% 12px,
+      calc(100% - 3px) 12px,
+      calc(100% - 3px) 6px,
+      calc(100% - 6px) 6px,
+      calc(100% - 6px) 3px,
+      calc(100% - 12px) 3px,
+      calc(100% - 12px) 0px,
+      12px 0px,
+      12px 3px,
+      6px 3px,
+      6px 6px,
+      3px 6px,
+      3px 12px,
+      0px 12px,
+      0px 50%,
+      3px 50%,
+      3px 12px,
+      6px 12px,
+      6px 6px,
+      12px 6px,
+      12px 3px,
+      calc(100% - 12px) 3px,
+      calc(100% - 12px) 6px,
+      calc(100% - 6px) 6px,
+      calc(100% - 6px) 12px,
+      calc(100% - 3px) 12px,
+      calc(100% - 3px) calc(100% - 12px),
+      calc(100% - 6px) calc(100% - 12px),
+      calc(100% - 6px) calc(100% - 6px),
+      calc(100% - 12px) calc(100% - 6px),
+      calc(100% - 12px) calc(100% - 3px),
+      12px calc(100% - 3px),
+      12px calc(100% - 6px),
+      6px calc(100% - 6px),
+      6px calc(100% - 12px),
+      3px calc(100% - 12px),
+      3px 50%,
+      0px 50%);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: block;
+  pointer-events: none;
+}
+
+.pixel-corners::after {
+  margin: -3px;
+}
+
+.pixel-corners.white::after {
+  background: white;
+}
+
 /* CRT Effects! */
 @keyframes flicker {
   0% {
@@ -311,89 +537,3 @@ input[type='checkbox']:checked {
   animation: textShadow 1.6s infinite;
 }
 
-/* Pixelated border, bottom only (just like me fr) */
-.pbbo {
-  /* --pixel-bg: #4f6367; Background color of button */
-  --pixel-border: #4f6367;
-  /* Bottom border color */
-  background: var(--pixel-bg);
-  box-shadow:
-
-    /* Inner Background Color */
-    /* box-shadow: [horizontal-offset] [vertical-offset] [blur] [spread] [color]; */
-    0 calc(var(--pixel-size) * -1) 0 calc(var(--pixel-size) * -0.5) var(--pixel-bg),
-    0 calc(var(--pixel-size) * 1) 0 calc(var(--pixel-size) * -0.5) var(--pixel-bg),
-    0 calc(var(--pixel-size) * -1.5) 0 calc(var(--pixel-size) * -1) var(--pixel-bg),
-    0 calc(var(--pixel-size) * 1.5) 0 calc(var(--pixel-size) * -1) var(--pixel-bg),
-
-    /* Bottom border color: --pixel-border */
-    0 calc(var(--pixel-size) * 1) 0 0 var(--pixel-border),
-    0 calc(var(--pixel-size) * 2.5) 0 calc(var(--pixel-size) * -1.25) var(--pixel-border);
-
-}
-.pbbo.small {
-  /* Because we're using a box shadow as the border it will overlap with other elements. */
-  /* We use margin here to simulate the normal boundary of the button */
-  margin: 1% 0;
-}
-.pbbo.big {
-  margin: 2.25% 0;
-}
-
-/* Uncommon Joker (this one has comments, the others do not for simplicity */
-.pbbo.green {
-  /* Store original color in HSL */
-  --base-hue: 156;
-  --base-sat: 57%;
-  --base-light: 47%;
-
-  /* Adjusted values */
-  --adjusted-light: calc(var(--base-light) * 0.67);
-  --adjusted-hue: calc(var(--base-hue) * 1.01463);
-
-  /* Final colors */
-  --pixel-bg: hsl(var(--base-hue), var(--base-sat), var(--base-light));
-
-  /* This color is used for the bottom as a shadow, it is derived by modifying the original color */
-  --pixel-border: hsl(var(--adjusted-hue), var(--base-sat), var(--adjusted-light));
-}
-
-.pbbo.blue {
-  --base-hue: 205;
-  --base-sat: 100%;
-  --base-light: 50%;
-  --adjusted-light: calc(var(--base-light) * 0.67);
-  --adjusted-hue: calc(var(--base-hue) * 1.01463);
-  --pixel-bg: hsl(var(--base-hue), var(--base-sat), var(--base-light));
-  --pixel-border: hsl(var(--adjusted-hue), var(--base-sat), var(--adjusted-light));
-}
-
-/* Clicky Button */
-.clicky {
-  border: 0;
-  cursor: pointer;
-  transition-property: all;
-  transition-timing-function: var(cubic-bezier(0.4, 0, 0.2, 1));
-  transition-duration: 80ms;
-    user-select: none; /* Standard syntax */
-}
-
-.clicky:active {
-  /* By removing the bottom border, we create the illusion of a click */
-  box-shadow:
-    /* Inner Background Color */
-    0 calc(var(--pixel-size) * -1) 0 calc(var(--pixel-size) * -0.5) var(--pixel-bg),
-    0 calc(var(--pixel-size) * 1) 0 calc(var(--pixel-size) * -0.5) var(--pixel-bg),
-    0 calc(var(--pixel-size) * -1.5) 0 calc(var(--pixel-size) * -1) var(--pixel-bg),
-    0 calc(var(--pixel-size) * 1.5) 0 calc(var(--pixel-size) * -1) var(--pixel-bg);
-}
-
-.clicky:hover {
-  opacity: 0.95;
-}
-
-.clicky:active,
-.clicky:focus {
-  /** Remove Chrome's Ugly Yellow Outline **/
-  outline: 0;
-}
