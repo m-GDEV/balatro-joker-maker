@@ -103,10 +103,13 @@ export default function JokerMaker() {
         <button className="px-2 py-1 mt-4 text-4xl bg-[#34bc85] text-white rounded pixel-corners" onClick={captureElement}>
           Save
         </button>
-        <button className="px-2 py-1 mt-4 text-4xl bg-[#34bc85] text-white rounded pixel-corners" onClick={() => {
+        <button className="px-2 py-1 mt-4 text-4xl bg-[#34bc85] text-white rounded " onClick={() => {
             Navigator.share("hello!")
         }}>
           Share
+        </button>
+        <button className="pbbo green clicky">
+          test
         </button>
       </div>
 

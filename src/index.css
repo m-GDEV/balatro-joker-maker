@@ -11,6 +11,7 @@
 html {
     /* needed because of dynamically changing bg */
     background-color: black;
+  --pixel-size: 0.2em; /* Size of the pixel, static for now, can be adjusted */
 }
 
 /* Fonts */
@@ -255,141 +256,70 @@ input[type='checkbox']:checked {
     animation: textShadow 1.6s infinite;
   }
 
-/* Pixlated borders */
-.pixel-corners,
-.pixel-corners--wrapper {
-  clip-path: polygon(
-    0px calc(100% - 12px),
-    3px calc(100% - 12px),
-    3px calc(100% - 6px),
-    6px calc(100% - 6px),
-    6px calc(100% - 3px),
-    12px calc(100% - 3px),
-    12px 100%,
-    calc(100% - 12px) 100%,
-    calc(100% - 12px) calc(100% - 3px),
-    calc(100% - 6px) calc(100% - 3px),
-    calc(100% - 6px) calc(100% - 6px),
-    calc(100% - 3px) calc(100% - 6px),
-    calc(100% - 3px) calc(100% - 12px),
-    100% calc(100% - 12px),
-    100% 12px,
-    calc(100% - 3px) 12px,
-    calc(100% - 3px) 6px,
-    calc(100% - 6px) 6px,
-    calc(100% - 6px) 3px,
-    calc(100% - 12px) 3px,
-    calc(100% - 12px) 0px,
-    12px 0px,
-    12px 3px,
-    6px 3px,
-    6px 6px,
-    3px 6px,
-    3px 12px,
-    0px 12px
-  );
-  position: relative;
+/* Pixelated border, bottom only (just like me fr) */
+.pbbo {
+  /* --pixel-bg: #4f6367; Background color of button */
+  --pixel-border: #4f6367; /* Bottom border color */
+	background: var(--pixel-bg);
+	box-shadow:
+		
+	/* Inner Background Color */ 
+		0 calc(var(--pixel-size) * -3) 0 calc(var(--pixel-size) * -1) var(--pixel-bg),
+		0 calc(var(--pixel-size) * 3) 0 calc(var(--pixel-size) * -1) var(--pixel-bg),
+		0 calc(var(--pixel-size) * -6) 0 calc(var(--pixel-size) * -2) var(--pixel-bg),
+		0 calc(var(--pixel-size) * 6) 0 calc(var(--pixel-size) * -2) var(--pixel-bg),
+		0 calc(var(--pixel-size) * -9) 0 calc(var(--pixel-size) * -4) var(--pixel-bg),
+		0 calc(var(--pixel-size) * 9) 0 calc(var(--pixel-size) * -4) var(--pixel-bg),
+		0 calc(var(--pixel-size) * -12) 0 calc(var(--pixel-size) * -6) var(--pixel-bg),
+		0 calc(var(--pixel-size) * 12) 0 calc(var(--pixel-size) * -6) var(--pixel-bg),
+
+		/* Bottom border color: --pixel-border */ 
+		0 calc(var(--pixel-size) * 2) 0 0 var(--pixel-border),
+		0 calc(var(--pixel-size) * 3) 0 0 var(--pixel-border),
+		0 calc(var(--pixel-size) * 4) 0 0 var(--pixel-border),
+		0 calc(var(--pixel-size) * 8.5) 0 calc(var(--pixel-size) * -2) var(--pixel-border);
 }
-.pixel-corners {
-  border: 3px solid transparent;
+
+/* Uncommon Joker */
+.pbbo.green {
+	/* Store original color in HSL */
+	--base-hue: 205; --base-sat: 100%; --base-light: 50%;
+
+	/* Adjusted values */
+	--adjusted-light: calc(var(--base-light) * 0.67); --adjusted-hue: calc(var(--base-hue) * 1.01463);
+  
+	/* Final colors */
+	--pixel-bg: hsl(var(--base-hue), var(--base-sat), var(--base-light));
+
+  /* This color is used for the bottom as a shadow, it is derived by modifying the original color */
+	--pixel-border: hsl(var(--adjusted-hue),var(--base-sat),var(--adjusted-light));
 }
-.pixel-corners--wrapper {
-  width: fit-content;
-  height: fit-content;
+
+/* Clicky Button */
+.clicky {
+	border: 0;
+	cursor: pointer;
 }
-.pixel-corners--wrapper .pixel-corners {
-  display: block;
-  clip-path: polygon(
-    3px 12px,
-    6px 12px,
-    6px 6px,
-    12px 6px,
-    12px 3px,
-    calc(100% - 12px) 3px,
-    calc(100% - 12px) 6px,
-    calc(100% - 6px) 6px,
-    calc(100% - 6px) 12px,
-    calc(100% - 3px) 12px,
-    calc(100% - 3px) calc(100% - 12px),
-    calc(100% - 6px) calc(100% - 12px),
-    calc(100% - 6px) calc(100% - 6px),
-    calc(100% - 12px) calc(100% - 6px),
-    calc(100% - 12px) calc(100% - 3px),
-    12px calc(100% - 3px),
-    12px calc(100% - 6px),
-    6px calc(100% - 6px),
-    6px calc(100% - 12px),
-    3px calc(100% - 12px)
-  );
+.clicky:active {
+  /* By removing the bottom border, we create the illusion of a click */
+	box-shadow: 
+    /* Inner Background Color */ 
+		0 calc(var(--pixel-size) * -3) 0 calc(var(--pixel-size) * -1) var(--pixel-bg),
+		0 calc(var(--pixel-size) * 3) 0 calc(var(--pixel-size) * -1) var(--pixel-bg),
+		0 calc(var(--pixel-size) * -6) 0 calc(var(--pixel-size) * -2) var(--pixel-bg),
+		0 calc(var(--pixel-size) * 6) 0 calc(var(--pixel-size) * -2) var(--pixel-bg),
+		0 calc(var(--pixel-size) * -9) 0 calc(var(--pixel-size) * -4) var(--pixel-bg),
+		0 calc(var(--pixel-size) * 9) 0 calc(var(--pixel-size) * -4) var(--pixel-bg),
+		0 calc(var(--pixel-size) * -12) 0 calc(var(--pixel-size) * -6) var(--pixel-bg),
+		0 calc(var(--pixel-size) * 12) 0 calc(var(--pixel-size) * -6) var(--pixel-bg),
 }
-.pixel-corners::after,
-.pixel-corners--wrapper::after {
-  content: "";
-  position: absolute;
-  clip-path: polygon(
-    0px calc(100% - 12px),
-    3px calc(100% - 12px),
-    3px calc(100% - 6px),
-    6px calc(100% - 6px),
-    6px calc(100% - 3px),
-    12px calc(100% - 3px),
-    12px 100%,
-    calc(100% - 12px) 100%,
-    calc(100% - 12px) calc(100% - 3px),
-    calc(100% - 6px) calc(100% - 3px),
-    calc(100% - 6px) calc(100% - 6px),
-    calc(100% - 3px) calc(100% - 6px),
-    calc(100% - 3px) calc(100% - 12px),
-    100% calc(100% - 12px),
-    100% 12px,
-    calc(100% - 3px) 12px,
-    calc(100% - 3px) 6px,
-    calc(100% - 6px) 6px,
-    calc(100% - 6px) 3px,
-    calc(100% - 12px) 3px,
-    calc(100% - 12px) 0px,
-    12px 0px,
-    12px 3px,
-    6px 3px,
-    6px 6px,
-    3px 6px,
-    3px 12px,
-    0px 12px,
-    0px 50%,
-    3px 50%,
-    3px 12px,
-    6px 12px,
-    6px 6px,
-    12px 6px,
-    12px 3px,
-    calc(100% - 12px) 3px,
-    calc(100% - 12px) 6px,
-    calc(100% - 6px) 6px,
-    calc(100% - 6px) 12px,
-    calc(100% - 3px) 12px,
-    calc(100% - 3px) calc(100% - 12px),
-    calc(100% - 6px) calc(100% - 12px),
-    calc(100% - 6px) calc(100% - 6px),
-    calc(100% - 12px) calc(100% - 6px),
-    calc(100% - 12px) calc(100% - 3px),
-    12px calc(100% - 3px),
-    12px calc(100% - 6px),
-    6px calc(100% - 6px),
-    6px calc(100% - 12px),
-    3px calc(100% - 12px),
-    3px 50%,
-    0px 50%
-  );
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  display: block;
-  pointer-events: none;
+
+.clicky:hover {
+	opacity: 0.95;
 }
-.pixel-corners::after {
-  margin: -3px;
-}
-.pixel-corners.white::after {
-  background: white;
+
+.clicky:active,
+.clicky:focus {
+	/** Remove Chrome's Ugly Yellow Outline **/
+	outline: 0;
 }
