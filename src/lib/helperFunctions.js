@@ -1,6 +1,5 @@
 import html2canvas from "html2canvas";
-import * as htmlToImage from 'html-to-image';
-import { toPng, toJpeg, toBlob, toPixelData, toSvg } from 'html-to-image';
+import * as htmlToImage from "../lib/html-to-image-dist";
 
 export const captureElement = async () => {
     console.log("got here")
