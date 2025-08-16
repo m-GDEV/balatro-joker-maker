@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { captureElement, MVRC } from "../lib/helperFunctions";
+import { captureElement, captureImage, MVRC } from "../lib/helperFunctions";
 import Joker from "./Joker";
 import TextInput from "./TextInput";
 import LabelAndSomething from "./LabelAndSomething";
@@ -100,7 +100,7 @@ export default function JokerMaker() {
             onChange={(e) => setJokerInfo(MVRC(jokerInfo, "isSmall", !jokerInfo.isSmall))}
           />
         </LabelAndSomething>
-        <button className="text-white pbbo green clicky big w-full max-w-3/4 self-center" onClick={captureElement}>
+        <button className="text-white pbbo green clicky big w-full max-w-3/4 self-center" onClick={captureImage}>
           <span className="text-4xl">Save</span>
         </button>
         <button className="text-white pbbo blue clicky big w-full max-w-3/4 self-center" onClick={() => {

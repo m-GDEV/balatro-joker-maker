@@ -41,7 +41,7 @@ export const captureElement = async () => {
         link.href = dataUrl;
         link.click();
       }).catch(function (error) {
-        alert('oops, something went wrong!', error);
+        console.log('oops, something went wrong!', error);
       });
   }
 

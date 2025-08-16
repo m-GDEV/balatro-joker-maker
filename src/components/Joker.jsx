@@ -48,7 +48,7 @@ function JokerDescription({ jokerInfo }) {
   return (
     <>
       {(jokerInfo.name != "" || jokerInfo.desc != "" || jokerInfo.rarity != "") && (
-        <div className="flex flex-col gap-3 items-center bg-[#3f4a4d] w-full rounded py-3 px-2 white" id="Test">
+        <div className="flex flex-col gap-3 items-center bg-[#3f4a4d] w-full rounded py-3 px-2 white pixel-corners" id="Test">
           {jokerInfo.name != "" && <span className="text-white text-5xl">{jokerInfo.name != "" ? jokerInfo.name : "Joker"}</span>}
           {jokerInfo.desc != "" && (
             <div className="bg-white pixel-corners rounded text-[#3d5458] w-full text-center text-3xl">{jokerInfo.desc}</div>
