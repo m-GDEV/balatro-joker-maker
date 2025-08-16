@@ -20,6 +20,7 @@ export default function JokerMaker() {
     desc: "+4 Mult",
     rarity: "Uncommon",
     mainImage: "/sj2.webp",
+    backgroundImage: "",
     overlay: overlayOptions[0].value,
     jokerTextDisabled: false,
     isSmall: false,
@@ -44,9 +45,9 @@ export default function JokerMaker() {
 
     // Check if image blob is valid
     // (image blob expires after page load so we want to replace it with a default img if it doesn't work)
-    let img = new Image();
-    img.onerror = () => setJokerInfo(MVRC(jokerInfo, "mainImage", "/sj2.jpg", true));
-    img.src = jokerInfo.mainImage;
+    // let img = new Image();
+    // img.onerror = () => setJokerInfo(MVRC(jokerInfo, "mainImage", "/sj2.jpg", true));
+    // img.src = jokerInfo.mainImage;
 
     // Save object value to query param
     const url = new URL(window.location);
@@ -68,14 +69,40 @@ export default function JokerMaker() {
         <TextInput label={"Rarity:"} value={jokerInfo.rarity} onChange={(e) => setJokerInfo(MVRC(jokerInfo, "rarity", e.target.value))} />
         <TextInput label={"Description:"} value={jokerInfo.desc} onChange={(e) => setJokerInfo(MVRC(jokerInfo, "desc", e.target.value))} />
         <LabelAndSomething label={"Image:"}>
-          <label className="relative inline-block rounded bg-gray-600 px-2 py-1 cursor-pointer text-white w-full pixel-corners white">
-            <span>Choose a file</span>
-            <input
-              className="top-0 left-0 absolute opacity-0"
-              type="file"
-              onChange={(e) => setJokerInfo(MVRC(jokerInfo, "mainImage", event.target.files[0]))}
-            />
-          </label>
+          <div className="flex items-center gap-3">
+            <label className="inline-block rounded bg-gray-600 px-2 py-1 cursor-pointer text-white w-full pixel-corners white">
+              <span>Open</span>
+              <input
+                className="top-0 left-0 absolute opacity-0"
+                type="file"
+                onChange={(e) => setJokerInfo(MVRC(jokerInfo, "mainImage", event.target.files[0]))}
+              />
+            </label>
+            <button
+              className="pixel-corners white balatro-red px-2 py-1"
+              onClick={() => setJokerInfo(MVRC(jokerInfo, "mainImage", "", true))}
+            >
+              X
+            </button>
+          </div>
+        </LabelAndSomething>
+        <LabelAndSomething label={"Bg Image:"}>
+          <div className="flex items-center gap-3">
+            <label className="inline-block rounded bg-gray-600 px-2 py-1 cursor-pointer text-white w-full pixel-corners white">
+              <span>Open</span>
+              <input
+                className="top-0 left-0 absolute opacity-0"
+                type="file"
+                onChange={(e) => setJokerInfo(MVRC(jokerInfo, "backgroundImage", event.target.files[0]))}
+              />
+            </label>
+            <button
+              className="pixel-corners white balatro-red px-2 py-1"
+              onClick={() => setJokerInfo(MVRC(jokerInfo, "backgroundImage", "", true))}
+            >
+              X
+            </button>
+          </div>
         </LabelAndSomething>
         <LabelAndSomething label={"Edition:"}>
           <select
@@ -103,11 +130,19 @@ export default function JokerMaker() {
         <button className="text-white pbbo green clicky big w-full max-w-3/4 self-center" onClick={captureImage}>
           <span className="text-4xl">Save</span>
         </button>
-        <button className="text-white pbbo blue clicky big w-full max-w-3/4 self-center" onClick={() => {
-            Navigator.share("hello!")
-        }}>
-          <span className="text-4xl">Share</span>
-        </button>
+        {navigator.share && true && (
+          <button
+            className="text-white pbbo blue clicky big w-full max-w-3/4 self-center"
+            onClick={() => {
+              navigator.share({
+                title: document.title,
+                files: [new File(jokerInfo.mainImage)],
+              });
+            }}
+          >
+            <span className="text-4xl">Share</span>
+          </button>
+        )}
       </div>
 
       {/* Joker side */}

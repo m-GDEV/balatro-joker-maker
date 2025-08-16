@@ -15,6 +15,10 @@ html {
   /* Size of the pixel, static for now, can be adjusted */
 }
 
+.balatro-red {
+  background-color: #fe4c40
+}
+
 /* Fonts */
 @font-face {
   font-family: m6x11;

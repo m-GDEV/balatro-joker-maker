@@ -6,9 +6,12 @@ export default function Joker({ jokerInfo }) {
       id="JokerDiv"
     >
       <div
-        className={`w-[11rem] h-[14.66rem] rounded flex flex-row p-3 pixel-corners bg-white relative ${jokerInfo.overlay == "negative-overlay" ? "negative-overlay" : ""}
+        className={`w-[11rem] h-[14.66rem] rounded flex flex-row p-3 pixel-corners white relative bg-contain bg-no-repeat bg-center
+              ${jokerInfo.overlay == "negative-overlay" ? "negative-overlay" : ""}
              ${jokerInfo.isSmall ? "w-[11rem] h-[14.66rem]" : "h-[25rem] w-[19rem]"}
+             ${jokerInfo.backgroundImage != "" ? `bg-[url('${jokerInfo.backgroundImage}')]` : "bg-white"}
             `}
+            style={{backgroundImage: `url('${jokerInfo.backgroundImage}')`}}
       >
         <div className={`absolute top-0 left-0 h-full w-full z-10 rounded ${jokerInfo.overlay}`}></div>
         <div className="flex flex-row w-full">
