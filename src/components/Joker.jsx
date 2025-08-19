@@ -1,4 +1,3 @@
-
 export default function Joker({ jokerInfo }) {
   return (
     <div
@@ -9,15 +8,15 @@ export default function Joker({ jokerInfo }) {
         className={`w-[11rem] h-[14.66rem] rounded flex flex-row p-3 pixel-corners white relative bg-contain bg-no-repeat bg-center
               ${jokerInfo.overlay == "negative-overlay" ? "negative-overlay" : ""}
              ${jokerInfo.isSmall ? "w-[11rem] h-[14.66rem]" : "h-[25rem] w-[19rem]"}
-             ${jokerInfo.backgroundImage != "" ? `bg-[url('${jokerInfo.backgroundImage}')]` : "bg-white"}
+             ${jokerInfo.backgroundImage == "" ? "bg-white" : ""}
             `}
-            style={{backgroundImage: `url('${jokerInfo.backgroundImage}')`}}
+        style={{ backgroundImage: `url('${jokerInfo.backgroundImage}')` }}
       >
         <div className={`absolute top-0 left-0 h-full w-full z-10 rounded ${jokerInfo.overlay}`}></div>
         <div className="flex flex-row w-full">
           <JokerCardSideText isInverted={false} isDisabled={jokerInfo.jokerTextDisabled} isSmall={jokerInfo.isSmall} />
           <div className="flex items-center px-2 w-full justify-center ">
-            <img src={`${jokerInfo.mainImage}`} className="" />
+            {jokerInfo.mainImage != "" && <img src={`${jokerInfo.mainImage}`} className="" />}
           </div>
           <JokerCardSideText isInverted={true} isDisabled={jokerInfo.jokerTextDisabled} isSmall={jokerInfo.isSmall} />
         </div>
@@ -31,7 +30,10 @@ export default function Joker({ jokerInfo }) {
 function JokerCardSideText({ isInverted, isDisabled, isSmall }) {
   if (isInverted) {
     return (
-      <div className={`flex flex-col items-start ${isSmall ? "text-[1.25rem]" : "text-[2rem]"}`} style={{ transform: "rotate(180deg) scaleX(-1)" }}>
+      <div
+        className={`flex flex-col items-start ${isSmall ? "text-[1.25rem]" : "text-[2rem]"}`}
+        style={{ transform: "rotate(180deg) scaleX(-1)" }}
+      >
         <JokerText isDisabled={isDisabled} />
       </div>
     );
@@ -88,14 +90,14 @@ function JokerText({ isDisabled }) {
 function GetRarityBgColor(rarity) {
   switch (rarity.toLowerCase()) {
     case "common":
-      return "bg-[#0093ff]"
+      return "bg-[#0093ff]";
     case "uncommon":
-      return "bg-[#35bd86]"
+      return "bg-[#35bd86]";
     case "rare":
-      return "bg-[#ff4c40]"
+      return "bg-[#ff4c40]";
     case "legendary":
-      return "bg-[#ab5bb5]"
+      return "bg-[#ab5bb5]";
     default:
-      return "bg-[#0093ff]" // common colour
+      return "bg-[#0093ff]"; // common colour
   }
 }

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { captureElement, captureImage, MVRC } from "../lib/helperFunctions";
+import { captureImage, MVRC } from "../lib/helperFunctions";
 import Joker from "./Joker";
 import TextInput from "./TextInput";
 import LabelAndSomething from "./LabelAndSomething";
@@ -68,7 +68,7 @@ export default function JokerMaker() {
         <TextInput label={"Name:"} value={jokerInfo.name} onChange={(e) => setJokerInfo(MVRC(jokerInfo, "name", e.target.value))} />
         <TextInput label={"Rarity:"} value={jokerInfo.rarity} onChange={(e) => setJokerInfo(MVRC(jokerInfo, "rarity", e.target.value))} />
         <TextInput label={"Description:"} value={jokerInfo.desc} onChange={(e) => setJokerInfo(MVRC(jokerInfo, "desc", e.target.value))} />
-        <LabelAndSomething label={"Image:"}>
+        <LabelAndSomething label={"Main Image:"}>
           <div className="flex items-center gap-3">
             <label className="inline-block rounded bg-gray-600 px-2 py-1 cursor-pointer text-white w-full pixel-corners white">
               <span>Open</span>

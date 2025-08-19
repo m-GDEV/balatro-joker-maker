@@ -154,7 +154,7 @@ input[type='checkbox']:checked {
   /* This color is used for the bottom as a shadow, it is derived by modifying the original color */
   --pixel-border: hsl(var(--adjusted-hue), var(--base-sat), var(--adjusted-light));
 }
-
+/* Common Joker */
 .pbbo.blue {
   --base-hue: 205;
   --base-sat: 100%;
@@ -164,6 +164,28 @@ input[type='checkbox']:checked {
   --pixel-bg: hsl(var(--base-hue), var(--base-sat), var(--base-light));
   --pixel-border: hsl(var(--adjusted-hue), var(--base-sat), var(--adjusted-light));
 }
+/* Rare Joker */
+.pbbo.red {
+  --base-hue: 3.77;
+  --base-sat: 100%;
+  --base-light: 62.55%;
+  --adjusted-light: calc(var(--base-light) * 0.67);
+  --adjusted-hue: calc(var(--base-hue) * 1.01463);
+  --pixel-bg: hsl(var(--base-hue), var(--base-sat), var(--base-light));
+  --pixel-border: hsl(var(--adjusted-hue), var(--base-sat), var(--adjusted-light));
+}
+
+/* Legendary */
+.pbbo.purple {
+  --base-hue: 293.33;
+  --base-sat: 37.82%;
+  --base-light: 53.33%;
+  --adjusted-light: calc(var(--base-light) * 0.67);
+  --adjusted-hue: calc(var(--base-hue) * 1.01463);
+  --pixel-bg: hsl(var(--base-hue), var(--base-sat), var(--base-light));
+  --pixel-border: hsl(var(--adjusted-hue), var(--base-sat), var(--adjusted-light));
+}
+
 
 /* Clicky Button */
 .clicky {
