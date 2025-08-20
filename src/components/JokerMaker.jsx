@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import { captureImage, MVRC } from "../lib/helperFunctions";
+import { captureImage, getImageDataUrl, MVRC } from "../lib/helperFunctions";
 import Joker from "./Joker";
 import TextInput from "./TextInput";
 import LabelAndSomething from "./LabelAndSomething";
+import TextAreaInput from "./TextAreaInput";
 
 export default function JokerMaker() {
   const overlayOptions = [
@@ -67,7 +68,7 @@ export default function JokerMaker() {
         <h2 className="text-5xl pb-4">Create your custom Joker!</h2>
         <TextInput label={"Name:"} value={jokerInfo.name} onChange={(e) => setJokerInfo(MVRC(jokerInfo, "name", e.target.value))} />
         <TextInput label={"Rarity:"} value={jokerInfo.rarity} onChange={(e) => setJokerInfo(MVRC(jokerInfo, "rarity", e.target.value))} />
-        <TextInput label={"Description:"} value={jokerInfo.desc} onChange={(e) => setJokerInfo(MVRC(jokerInfo, "desc", e.target.value))} />
+        <TextAreaInput label={"Description:"} value={jokerInfo.desc} onChange={(e) => setJokerInfo(MVRC(jokerInfo, "desc", e.target.value))} />
         <LabelAndSomething label={"Main Image:"}>
           <div className="flex items-center gap-3">
             <label className="inline-block rounded bg-gray-600 px-2 py-1 cursor-pointer text-white w-full pixel-corners white">
@@ -136,7 +137,11 @@ export default function JokerMaker() {
             onClick={() => {
               navigator.share({
                 title: document.title,
-                files: [new File(jokerInfo.mainImage)],
+                files: [new File(
+                  [jokerInfo.mainImage],
+                  "joker-image.png",
+                  { type: "image/png", lastModified: Date.now() }
+                )],
               });
             }}
           >

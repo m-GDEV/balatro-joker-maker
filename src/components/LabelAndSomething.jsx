@@ -1,8 +1,8 @@
-export default function LabelAndSomething({ label, children }) {
+export default function LabelAndSomething({ label, children, vertical = false }) {
   return (
-    <div className="text-3xl flex gap-5 items-center justify-between">
+    <div className={`text-3xl flex justify-between ${vertical ? "flex-col gap-1 items-start w-full" : "flex-row gap-3 items-center"}`}>
       <label>{label}</label>
-      <div className="">
+      <div className={`${vertical ? "w-full" : "w-auto"}`}>
       {children}
       </div>
     </div>
