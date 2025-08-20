@@ -22,6 +22,8 @@ export default function JokerMaker() {
     rarity: "Uncommon",
     mainImage: "/sj2.webp",
     backgroundImage: "",
+    backgroundImageCover: false,
+    jokerTextInverted: false,
     overlay: overlayOptions[0].value,
     jokerTextDisabled: false,
     isSmall: false,
@@ -104,6 +106,22 @@ export default function JokerMaker() {
               X
             </button>
           </div>
+        </LabelAndSomething>
+        <LabelAndSomething label={"Bg Image Stretched"}>
+          <input
+            className="p-3 pixel-corners self-end"
+            type="checkbox"
+            checked={jokerInfo.backgroundImageCover}
+            onChange={(e) => setJokerInfo(MVRC(jokerInfo, "backgroundImageCover", !jokerInfo.backgroundImageCover, true))}
+          />
+        </LabelAndSomething>
+        <LabelAndSomething label={"'Joker' Text Inverted"}>
+          <input
+            className="p-3 pixel-corners self-end"
+            type="checkbox"
+            checked={jokerInfo.jokerTextInverted}
+            onChange={(e) => setJokerInfo(MVRC(jokerInfo, "jokerTextInverted", !jokerInfo.jokerTextInverted))}
+          />
         </LabelAndSomething>
         <LabelAndSomething label={"Edition:"}>
           <select

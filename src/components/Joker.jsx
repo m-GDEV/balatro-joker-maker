@@ -5,20 +5,21 @@ export default function Joker({ jokerInfo }) {
       id="JokerDiv"
     >
       <div
-        className={`w-[11rem] h-[14.66rem] rounded flex flex-row p-3 pixel-corners white relative bg-contain bg-no-repeat bg-center
+        className={`w-[11rem] h-[14.66rem] rounded flex flex-row p-3 pixel-corners white relative bg-no-repeat bg-center
               ${jokerInfo.overlay == "negative-overlay" ? "negative-overlay" : ""}
              ${jokerInfo.isSmall ? "w-[11rem] h-[14.66rem]" : "h-[25rem] w-[19rem]"}
              ${jokerInfo.backgroundImage == "" ? "bg-white" : ""}
+             ${jokerInfo.backgroundImageCover ? "bg-cover" : "bg-contain"}
             `}
         style={{ backgroundImage: `url('${jokerInfo.backgroundImage}')` }}
       >
         <div className={`absolute top-0 left-0 h-full w-full z-10 rounded ${jokerInfo.overlay}`}></div>
         <div className="flex flex-row w-full">
-          <JokerCardSideText isInverted={false} isDisabled={jokerInfo.jokerTextDisabled} isSmall={jokerInfo.isSmall} />
+          <JokerCardSideText jokerInfo={jokerInfo} />
           <div className="flex items-center px-2 w-full justify-center ">
             {jokerInfo.mainImage != "" && <img src={`${jokerInfo.mainImage}`} className="" />}
           </div>
-          <JokerCardSideText isInverted={true} isDisabled={jokerInfo.jokerTextDisabled} isSmall={jokerInfo.isSmall} />
+          <JokerCardSideText jokerInfo={jokerInfo} isInverted={true}/>
         </div>
       </div>
 
@@ -27,23 +28,17 @@ export default function Joker({ jokerInfo }) {
   );
 }
 
-function JokerCardSideText({ isInverted, isDisabled, isSmall }) {
-  if (isInverted) {
+function JokerCardSideText({ jokerInfo, isInverted }) {
     return (
       <div
-        className={`flex flex-col items-start ${isSmall ? "text-[1.25rem]" : "text-[2rem]"}`}
-        style={{ transform: "rotate(180deg) scaleX(-1)" }}
+        className={`flex flex-col items-start ${jokerInfo.isSmall ? "text-[1.25rem]" : "text-[2rem] "}
+        ${isInverted ? "rotate-180" : ""}
+        ${jokerInfo.jokerTextInverted ? "text-white" : "text-[#4f6367]"}
+        `}
       >
-        <JokerText isDisabled={isDisabled} />
+        <JokerText isDisabled={jokerInfo.isDisabled} />
       </div>
     );
-  } else {
-    return (
-      <div className={`flex flex-col items-start ${isSmall ? "text-[1.25rem]" : "text-[2rem]"}`}>
-        <JokerText isDisabled={isDisabled} />
-      </div>
-    );
-  }
 }
 
 function JokerDescription({ jokerInfo }) {
@@ -100,4 +95,9 @@ function GetRarityBgColor(rarity) {
     default:
       return "blue"; // common colour
   }
+}
+
+function processDescription(desc) {
+  newDesc = "";
+
 }
