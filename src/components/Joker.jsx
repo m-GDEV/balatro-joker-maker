@@ -1,3 +1,4 @@
+// Main component
 export default function Joker({ jokerInfo }) {
   return (
     <div
@@ -19,7 +20,7 @@ export default function Joker({ jokerInfo }) {
           <div className="flex items-center px-2 w-full justify-center ">
             {jokerInfo.mainImage != "" && <img src={`${jokerInfo.mainImage}`} className="" />}
           </div>
-          <JokerCardSideText jokerInfo={jokerInfo} isInverted={true}/>
+          <JokerCardSideText jokerInfo={jokerInfo} isInverted={true} />
         </div>
       </div>
 
@@ -28,17 +29,18 @@ export default function Joker({ jokerInfo }) {
   );
 }
 
+// Other JSX Functions
 function JokerCardSideText({ jokerInfo, isInverted }) {
-    return (
-      <div
-        className={`flex flex-col items-start ${jokerInfo.isSmall ? "text-[1.25rem]" : "text-[2rem] "}
+  return (
+    <div
+      className={`flex flex-col items-start ${jokerInfo.isSmall ? "text-[1.25rem]" : "text-[2rem] "}
         ${isInverted ? "rotate-180" : ""}
         ${jokerInfo.jokerTextInverted ? "text-white" : "text-[#4f6367] letter-outline"}
         `}
-      >
-        <JokerText isDisabled={jokerInfo.isDisabled} />
-      </div>
-    );
+    >
+      <JokerText isDisabled={jokerInfo.isDisabled} />
+    </div>
+  );
 }
 
 function JokerDescription({ jokerInfo }) {
@@ -51,7 +53,11 @@ function JokerDescription({ jokerInfo }) {
         <div className="flex flex-col gap-3 items-center bg-[#3f4a4d] w-full rounded py-3 px-2 white pixel-corners" id="Test">
           {jokerInfo.name != "" && <span className="text-white text-5xl">{jokerInfo.name != "" ? jokerInfo.name : "Joker"}</span>}
           {jokerInfo.desc != "" && (
-            <div className="bg-white pixel-corners rounded text-[#3d5458] w-full text-center text-3xl max-w-[17rem] max-h-[11.5rem] overflow-y-auto overflow-x-hidden p-1  ">{jokerInfo.desc}</div>
+            <div className="bg-white pixel-corners rounded text-[black] w-full text-center text-3xl max-w-[17rem] max-h-[11.5rem] overflow-y-auto overflow-x-hidden p-1  ">
+              {jokerInfo.desc.split(" ").map((word, index) => (
+                <JokerDescriptionWord key={index} word={word} />
+              ))}
+            </div>
           )}
           <div className="w-3/4">
             {jokerInfo.rarity != "" && (
@@ -82,6 +88,21 @@ function JokerText({ isDisabled }) {
   }
 }
 
+function JokerDescriptionWord({ word }) {
+  return (
+    <>
+      <span
+        className=
+        {`
+      ${word[0] == "X" && Number.isInteger(parseInt(word[1])) ? "text-white bg-[color:hsl(3.77,100%,62.55%)] p-0.5 rounded-sm" : ""}
+    `}
+      >{word}</span>
+      <span> </span>
+    </>
+  );
+}
+
+// JS Functions
 function GetRarityBgColor(rarity) {
   switch (rarity.toLowerCase()) {
     case "common":
@@ -94,6 +115,40 @@ function GetRarityBgColor(rarity) {
       return "purple";
     default:
       return "blue"; // common colour
+  }
+}
+
+function GetMappedColour(type) {
+  switch (type.toLowerCase()) {
+    case "mult":
+      return "#ff4c40";
+    case "chips":
+      return "#0093ff";
+    case "tarot":
+      return "#7b559c";
+    case "econ":
+      return "#35bd86";
+    case "chance":
+      return "#35bd86";
+    case "money":
+      return "#f5b244";
+    
+    case "diamonds":
+      return "#f15a27";
+    case "hearts":
+      return "#f11b52";
+    case "spades":
+      return "#292189";
+    case "clubs":
+      return "#074540";
+
+    case "handType":
+      return "#ff8f00";
+    case "keyword":
+      return "#ff8f00";
+
+    default:
+      return ""; 
   }
 }
 

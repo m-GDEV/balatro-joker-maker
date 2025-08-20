@@ -1,7 +1,7 @@
 import * as htmlToImage from "../lib/html-to-image-dist";
 
 export function captureImage() {
-  htmlToImage.toSvg(document.getElementById('JokerDiv'))
+  htmlToImage.toPng(document.getElementById('JokerDiv'))
     .then(function (dataUrl) {
       var link = document.createElement('a');
       link.download = 'joker-image.png';
