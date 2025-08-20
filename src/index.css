@@ -45,8 +45,7 @@ html {
 }
 
 .letter-outline {
-  color: #FFFFFF;
-
+  -webkit-text-stroke: 1px white;
 }
 
 
@@ -153,6 +152,7 @@ input[type='checkbox']:checked {
   /* This color is used for the bottom as a shadow, it is derived by modifying the original color */
   --pixel-border: hsl(var(--adjusted-hue), var(--base-sat), var(--adjusted-light));
 }
+
 /* Common Joker */
 .pbbo.blue {
   --base-hue: 205;
@@ -163,6 +163,7 @@ input[type='checkbox']:checked {
   --pixel-bg: hsl(var(--base-hue), var(--base-sat), var(--base-light));
   --pixel-border: hsl(var(--adjusted-hue), var(--base-sat), var(--adjusted-light));
 }
+
 /* Rare Joker */
 .pbbo.red {
   --base-hue: 3.77;
@@ -561,4 +562,3 @@ input[type='checkbox']:checked {
 .crt {
   animation: textShadow 1.6s infinite;
 }
-

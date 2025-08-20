@@ -1,11 +1,11 @@
 export default function Joker({ jokerInfo }) {
   return (
     <div
-      className={`flex flex-col gap-10 bg-[url(/bg.webp)] bg-cover bg-center bg-repeat-y p-4 rounded-xl drop-shadow-2xl min-w-[21rem] min-h-[42rem] items-center justify-evenly`}
+      className={`flex flex-col gap-3 bg-[url(/bg.webp)] bg-cover bg-center bg-repeat-y p-4 rounded-xl drop-shadow-2xl w-[22rem] h-[47rem] items-center justify-evenly pixel-corners `}
       id="JokerDiv"
     >
       <div
-        className={`w-[11rem] h-[14.66rem] rounded flex flex-row p-3 pixel-corners white relative bg-no-repeat bg-center
+        className={`rounded flex flex-row p-3 pixel-corners white relative bg-no-repeat bg-center
               ${jokerInfo.overlay == "negative-overlay" ? "negative-overlay" : ""}
              ${jokerInfo.isSmall ? "w-[11rem] h-[14.66rem]" : "h-[25rem] w-[19rem]"}
              ${jokerInfo.backgroundImage == "" ? "bg-white" : ""}
@@ -33,7 +33,7 @@ function JokerCardSideText({ jokerInfo, isInverted }) {
       <div
         className={`flex flex-col items-start ${jokerInfo.isSmall ? "text-[1.25rem]" : "text-[2rem] "}
         ${isInverted ? "rotate-180" : ""}
-        ${jokerInfo.jokerTextInverted ? "text-white" : "text-[#4f6367]"}
+        ${jokerInfo.jokerTextInverted ? "text-white" : "text-[#4f6367] letter-outline"}
         `}
       >
         <JokerText isDisabled={jokerInfo.isDisabled} />
@@ -51,7 +51,7 @@ function JokerDescription({ jokerInfo }) {
         <div className="flex flex-col gap-3 items-center bg-[#3f4a4d] w-full rounded py-3 px-2 white pixel-corners" id="Test">
           {jokerInfo.name != "" && <span className="text-white text-5xl">{jokerInfo.name != "" ? jokerInfo.name : "Joker"}</span>}
           {jokerInfo.desc != "" && (
-            <div className="bg-white pixel-corners rounded text-[#3d5458] w-full text-center text-3xl">{jokerInfo.desc}</div>
+            <div className="bg-white pixel-corners rounded text-[#3d5458] w-full text-center text-3xl max-w-[17rem] max-h-[11.5rem] overflow-y-auto overflow-x-hidden p-1  ">{jokerInfo.desc}</div>
           )}
           <div className="w-3/4">
             {jokerInfo.rarity != "" && (
