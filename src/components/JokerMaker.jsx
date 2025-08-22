@@ -17,16 +17,16 @@ export default function JokerMaker() {
   ];
 
   const [jokerInfo, setJokerInfo] = useState({
-    name: "Joker",
-    desc: "+4 Mult",
-    rarity: "Uncommon",
-    mainImage: "/sj2.webp",
-    backgroundImage: "",
-    backgroundImageCover: false,
-    jokerTextInverted: false,
-    overlay: overlayOptions[0].value,
-    jokerTextDisabled: false,
-    isSmall: false,
+    name: "Joker", // Name of Joker
+    desc: "+4 Mult", // Description of Joker
+    rarity: "Uncommon", // Rarity of Joker
+    mainImage: "/sj2.webp", // Main image of Joker card
+    backgroundImage: "", // Background image of Joker card
+    backgroundImageCover: false, // Whether the background image should cover the whole card or be contained 
+    backgroundColor: "#fff", // Background color of Joker card
+    jokerTextInverted: false, // Whether the 'Joker' text should be inverted (white) or not (grey)
+    overlay: overlayOptions[0].value, // Overlay effect on the card
+    isSmall: false, // Wee?
   });
 
   const [ready, setReady] = useState(false);
@@ -57,16 +57,23 @@ export default function JokerMaker() {
     const jInfo = JSON.stringify(jokerInfo);
     const sp = url.searchParams.get("jokerInfo");
 
-    if (sp !== jInfo) {
-      url.searchParams.set("jokerInfo", jInfo);
-      history.pushState(null, "", url);
+    // Wrap this in a try-catch because sometimes if the values in jokerInfo are changed to quickly, the history api rate-limits the changes 
+    // so we just ignore it and it doesn't crash the app, nor does it update the URL but that's fine
+    try {
+      if (sp !== jInfo) {
+        url.searchParams.set("jokerInfo", jInfo);
+        history.pushState(null, "", url);
+      }
+    }
+    catch (error) {
+      console.error("Error updating URL:", error);
     }
   }, [jokerInfo]);
 
   return (
-    <div className="body-text  flex flex-col justify-center gap-15 sm:flex-row">
+    <div className="body-text  flex flex-col justify-center gap-10 sm:flex-row h-[75%]">
       {/* Edit Joker Details Form */}
-      <div className="flex flex-col gap-2 max-w-[23rem] text-center bg-[#3f4a4d] p-5 rounded-xl pixel-corners max-h-[47rem]">
+      <div className="flex flex-col gap-2 max-w-[23rem] text-center bg-[#3f4a4d] p-5 rounded-xl pixel-corners ">
         <h2 className="text-3xl pb-">Create your custom Joker!</h2>
         <h3 className="text-xl pb-4 text-green-500">📜 Scroll for more options</h3>
         <div className="flex flex-col gap-2 overflow-y-scroll overflow-x-hidden">
@@ -117,6 +124,23 @@ export default function JokerMaker() {
               checked={jokerInfo.backgroundImageCover}
               onChange={(e) => setJokerInfo(MVRC(jokerInfo, "backgroundImageCover", !jokerInfo.backgroundImageCover, true))}
             />
+          </LabelAndSomething>
+          <LabelAndSomething label={"Bg Color:"}>
+            <div className="flex items-center ">
+              <input className={`w-[6rem] text-2xl text-black bg-white px-2 py-1 rounded-sm pixel-corners outline-none`} type="text" value={jokerInfo.backgroundColor} onChange={(e) => setJokerInfo(MVRC(jokerInfo, "backgroundColor", e.target.value))} />
+              <input
+                className="p-3 pixel-corners self-end h-[4rem]"
+                type="color"
+                value={jokerInfo.backgroundColor}
+                onChange={(e) => setJokerInfo(MVRC(jokerInfo, "backgroundColor", e.target.value))}
+              />
+              <button
+                className="pixel-corners white balatro-red px-2 py-1"
+                onClick={() => setJokerInfo(MVRC(jokerInfo, "backgroundColor", ""))}
+              >
+                X
+              </button>
+            </div>
           </LabelAndSomething>
           <LabelAndSomething label={"'Joker' Text Inverted"}>
             <input

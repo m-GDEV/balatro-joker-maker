@@ -11,7 +11,7 @@ export default function App() {
   return (
     <div
       id="app"
-      className="body-text flex flex-col items-center justify-around h-dvh w-full bg-cover bg-center bg-repeat-y crt"
+      className="body-text flex flex-col items-center justify-around h-dvh w-full bg-cover bg-center bg-repeat-y "
       style={{backgroundImage: `url('${bgPath == "" ? "/bg1.webp" : bgPath}')`}}
     >
       <h1 className="body-text text-8xl tracking-wider letter-outline">Balatro Joker Maker</h1>
@@ -25,14 +25,14 @@ export default function App() {
             const thisButton = document.getElementById('crtButton');
             if (el.classList.contains("crt")) {
               el.classList.remove("crt");
-              thisButton.innerText = "Enable CRT";
+              thisButton.innerText = "Disable CRT";
             } else {
               el.classList.add("crt");
-              thisButton.innerText = "Disable CRT";
+              thisButton.innerText = "Enable CRT";
             }
           }}
         >
-          Disable CRT
+          Enable CRT
         </button>
       </div>
     </div>

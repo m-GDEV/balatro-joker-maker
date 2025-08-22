@@ -44,8 +44,11 @@ html {
   line-height: 1.2;
 }
 
-.letter-outline {
+.letter-outline-white {
   -webkit-text-stroke: 1px white;
+}
+.letter-outline-grey {
+  -webkit-text-stroke: 1px #4f6367;
 }
 
 

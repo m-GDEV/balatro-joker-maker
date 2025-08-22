@@ -2,17 +2,20 @@
 export default function Joker({ jokerInfo }) {
   return (
     <div
-      className={`flex flex-col gap-3 bg-[url(/bg.webp)] bg-cover bg-center bg-repeat-y p-4 rounded-xl drop-shadow-2xl w-[22rem] h-[47rem] items-center justify-evenly pixel-corners `}
+      className={`flex flex-col gap-3 bg-[url(/bg.webp)] bg-cover bg-center bg-repeat-y p-4 rounded-xl drop-shadow-2xl w-[22rem] h-full items-center justify-evenly pixel-corners `}
       id="JokerDiv"
     >
       <div
         className={`rounded flex flex-row p-3 pixel-corners white relative bg-no-repeat bg-center
               ${jokerInfo.overlay == "negative-overlay" ? "negative-overlay" : ""}
              ${jokerInfo.isSmall ? "w-[11rem] h-[14.66rem]" : "h-[25rem] w-[19rem]"}
-             ${jokerInfo.backgroundImage == "" ? "bg-white" : ""}
+             ${jokerInfo.backgroundImage == "" ? "bg-white" : `bg-[${jokerInfo.backgroundColor}]`}
              ${jokerInfo.backgroundImageCover ? "bg-cover" : "bg-contain"}
             `}
-        style={{ backgroundImage: `url('${jokerInfo.backgroundImage}')` }}
+        style={
+          { backgroundImage: `url('${jokerInfo.backgroundImage}')`,
+        backgroundColor: jokerInfo.backgroundColor}
+      }
       >
         <div className={`absolute top-0 left-0 h-full w-full z-10 rounded ${jokerInfo.overlay}`}></div>
         <div className="flex flex-row w-full">
@@ -35,7 +38,7 @@ function JokerCardSideText({ jokerInfo, isInverted }) {
     <div
       className={`flex flex-col items-start ${jokerInfo.isSmall ? "text-[1.25rem]" : "text-[2rem] "}
         ${isInverted ? "rotate-180" : ""}
-        ${jokerInfo.jokerTextInverted ? "text-white" : "text-[#4f6367] letter-outline"}
+        ${jokerInfo.jokerTextInverted ? "text-white letter-outline-grey" : "text-[#4f6367] letter-outline-white"}
         `}
     >
       <JokerText isDisabled={jokerInfo.isDisabled} />
