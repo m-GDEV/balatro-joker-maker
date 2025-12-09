@@ -1,5 +1,7 @@
+import { JokerInfoType } from "../types/MainTypes";
+
 // Main component
-export default function Joker({ jokerInfo }) {
+export default function Joker({ jokerInfo }: { jokerInfo: JokerInfoType }) {
   return (
     <div
       className={`flex flex-col gap-3 bg-[url(/bg.webp)] bg-cover bg-center bg-repeat-y p-4 rounded-xl drop-shadow-2xl w-[22rem] h-full items-center justify-evenly pixel-corners `}
@@ -7,19 +9,16 @@ export default function Joker({ jokerInfo }) {
     >
       <div
         className={`rounded flex flex-row p-3 pixel-corners white relative bg-no-repeat bg-center
-              ${jokerInfo.overlay == "negative-overlay" ? "negative-overlay" : ""}
+              ${jokerInfo.overlay.value == "negative-overlay" ? "negative-overlay" : ""}
              ${jokerInfo.isSmall ? "w-[11rem] h-[14.66rem]" : "h-[25rem] w-[19rem]"}
              ${jokerInfo.backgroundImage == "" ? "bg-white" : `bg-[${jokerInfo.backgroundColor}]`}
              ${jokerInfo.backgroundImageCover ? "bg-cover" : "bg-contain"}
             `}
-        style={
-          { backgroundImage: `url('${jokerInfo.backgroundImage}')`,
-        backgroundColor: jokerInfo.backgroundColor}
-      }
+        style={{ backgroundImage: `url('${jokerInfo.backgroundImage}')`, backgroundColor: jokerInfo.backgroundColor }}
       >
         <div className={`absolute top-0 left-0 h-full w-full z-10 rounded ${jokerInfo.overlay}`}></div>
         <div className="flex flex-row w-full">
-          <JokerCardSideText jokerInfo={jokerInfo} />
+          <JokerCardSideText jokerInfo={jokerInfo} isInverted={false} />
           <div className="flex items-center px-2 w-full justify-center ">
             {jokerInfo.mainImage != "" && <img src={`${jokerInfo.mainImage}`} className="" />}
           </div>
@@ -33,7 +32,7 @@ export default function Joker({ jokerInfo }) {
 }
 
 // Other JSX Functions
-function JokerCardSideText({ jokerInfo, isInverted }) {
+function JokerCardSideText({ jokerInfo, isInverted }: { jokerInfo: JokerInfoType; isInverted?: boolean }) {
   return (
     <div
       className={`flex flex-col items-start ${jokerInfo.isSmall ? "text-[1.25rem]" : "text-[2rem] "}
@@ -41,12 +40,12 @@ function JokerCardSideText({ jokerInfo, isInverted }) {
         ${jokerInfo.jokerTextInverted ? "text-white letter-outline-grey" : "text-[#4f6367] letter-outline-white"}
         `}
     >
-      <JokerText isDisabled={jokerInfo.isDisabled} />
+      <JokerText isDisabled={jokerInfo.jokerTextDisabled} />
     </div>
   );
 }
 
-function JokerDescription({ jokerInfo }) {
+function JokerDescription({ jokerInfo }: { jokerInfo: JokerInfoType }) {
   {
     /* This basically hides each individual component if it is not populated. Easily allows you to only show the joker card*/
   }
@@ -57,7 +56,7 @@ function JokerDescription({ jokerInfo }) {
           {jokerInfo.name != "" && <span className="text-white text-5xl">{jokerInfo.name != "" ? jokerInfo.name : "Joker"}</span>}
           {jokerInfo.desc != "" && (
             <div className="bg-white pixel-corners rounded text-[black] w-full text-center text-3xl max-w-[17rem] max-h-[11.5rem] overflow-y-auto overflow-x-hidden p-1  ">
-              {jokerInfo.desc.split(" ").map((word, index) => (
+              {jokerInfo.desc.split(" ").map((word: string, index: number) => (
                 <JokerDescriptionWord key={index} word={word} />
               ))}
             </div>
@@ -75,9 +74,9 @@ function JokerDescription({ jokerInfo }) {
   );
 }
 
-function JokerText({ isDisabled }) {
+function JokerText({ isDisabled }: { isDisabled?: boolean }) {
   if (isDisabled) {
-    return <span className="joker-text !text-transparent">K</span>;
+    return <span className="joker-text text-transparent">K</span>;
   } else {
     return (
       <>
@@ -91,22 +90,23 @@ function JokerText({ isDisabled }) {
   }
 }
 
-function JokerDescriptionWord({ word }) {
+function JokerDescriptionWord({ word }: { word: string }) {
   return (
     <>
       <span
-        className=
-        {`
+        className={`
       ${word[0] == "X" && Number.isInteger(parseInt(word[1])) ? "text-white bg-[color:hsl(3.77,100%,62.55%)] p-0.5 rounded-sm" : ""}
     `}
-      >{word}</span>
+      >
+        {word}
+      </span>
       <span> </span>
     </>
   );
 }
 
 // JS Functions
-function GetRarityBgColor(rarity) {
+function GetRarityBgColor(rarity: string) {
   switch (rarity.toLowerCase()) {
     case "common":
       return "blue";
@@ -121,7 +121,7 @@ function GetRarityBgColor(rarity) {
   }
 }
 
-function GetMappedColour(type) {
+function GetMappedColour(type: string): string {
   switch (type.toLowerCase()) {
     case "mult":
       return "#ff4c40";
@@ -135,7 +135,6 @@ function GetMappedColour(type) {
       return "#35bd86";
     case "money":
       return "#f5b244";
-    
     case "diamonds":
       return "#f15a27";
     case "hearts":
@@ -151,11 +150,6 @@ function GetMappedColour(type) {
       return "#ff8f00";
 
     default:
-      return ""; 
+      return "";
   }
-}
-
-function processDescription(desc) {
-  newDesc = "";
-
 }

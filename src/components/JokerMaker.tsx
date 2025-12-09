@@ -4,35 +4,17 @@ import Joker from "./Joker";
 import TextInput from "./TextInput";
 import LabelAndSomething from "./LabelAndSomething";
 import TextAreaInput from "./TextAreaInput";
+import { JokerInfoType } from "../types/MainTypes";
+import { defaultJokerInfo } from "../types/Constants";
+import { overlayOptions } from "../types/Constants";
 
 export default function JokerMaker() {
-  const overlayOptions = [
-    { key: "None", value: "" },
-    { key: "Polychrome", value: "polychrome-overlay" },
-    { key: "Debuff", value: "debuff-overlay" },
-    { key: "Holographic", value: "holographic-overlay" },
-    { key: "Foil", value: "foil-overlay" },
-    { key: "Stone", value: "stone-overlay" },
-    { key: "Negative", value: "negative-overlay" },
-  ];
-
-  const [jokerInfo, setJokerInfo] = useState({
-    name: "Joker", // Name of Joker
-    desc: "+4 Mult", // Description of Joker
-    rarity: "Uncommon", // Rarity of Joker
-    mainImage: "/sj2.webp", // Main image of Joker card
-    backgroundImage: "", // Background image of Joker card
-    backgroundImageCover: false, // Whether the background image should cover the whole card or be contained 
-    backgroundColor: "#fff", // Background color of Joker card
-    jokerTextInverted: false, // Whether the 'Joker' text should be inverted (white) or not (grey)
-    overlay: overlayOptions[0].value, // Overlay effect on the card
-    isSmall: false, // Wee?
-  });
+  const [jokerInfo, setJokerInfo] = useState<JokerInfoType>(defaultJokerInfo);
 
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    const url = new URL(window.location);
+    const url = new URL(window.location.href);
     const info = url.searchParams.get("jokerInfo");
     if (info != undefined) {
       setJokerInfo(JSON.parse(info));
@@ -53,19 +35,18 @@ export default function JokerMaker() {
     // img.src = jokerInfo.mainImage;
 
     // Save object value to query param
-    const url = new URL(window.location);
+    const url = new URL(window.location.href);
     const jInfo = JSON.stringify(jokerInfo);
     const sp = url.searchParams.get("jokerInfo");
 
-    // Wrap this in a try-catch because sometimes if the values in jokerInfo are changed to quickly, the history api rate-limits the changes 
+    // Wrap this in a try-catch because sometimes if the values in jokerInfo are changed to quickly, the history api rate-limits the changes
     // so we just ignore it and it doesn't crash the app, nor does it update the URL but that's fine
     try {
       if (sp !== jInfo) {
         url.searchParams.set("jokerInfo", jInfo);
         history.pushState(null, "", url);
       }
-    }
-    catch (error) {
+    } catch (error) {
       console.error("Error updating URL:", error);
     }
   }, [jokerInfo]);
@@ -75,12 +56,38 @@ export default function JokerMaker() {
       {/* Edit Joker Details Form */}
       <div className="flex flex-col gap-2 max-w-[23rem] text-center bg-[#3f4a4d] p-5 rounded-xl pixel-corners ">
         <h2 className="text-3xl pb-">Create your custom Joker!</h2>
-        <h3 className="text-xl pb-4 text-green-500">📜 Scroll for more options</h3>
+        <h3 className="text-xl text-green-500">📜 Scroll for more options</h3>
         <div className="flex flex-col gap-2 overflow-y-scroll overflow-x-hidden">
-
+          {/* Action buttons  */}
+          <div className="flex flex-row gap-2  pb-2 sticky top-0 z-1 bg-[#3f4a4d]">
+            <button className="text-white pbbo red clicky big py-1 px-3 w-full" onClick={() => setJokerInfo(defaultJokerInfo)}>
+              <span className="text-4xl">Reset</span>
+            </button>
+            <button className="text-white pbbo green clicky big py-1 px-3 w-full" onClick={captureImage}>
+              <span className="text-4xl">Save</span>
+            </button>
+            {navigator.share && true && (
+              <button
+                className="text-white pbbo blue clicky big w-full max-w-3/4 self-center"
+                onClick={() => {
+                  navigator.share({
+                    title: document.title,
+                    files: [new File([jokerInfo.mainImage], "joker-image.png", { type: "image/png", lastModified: Date.now() })],
+                  });
+                }}
+              >
+                <span className="text-4xl">Share</span>
+              </button>
+            )}
+          </div>
+          {/* Joker info form */}
           <TextInput label={"Name:"} value={jokerInfo.name} onChange={(e) => setJokerInfo(MVRC(jokerInfo, "name", e.target.value))} />
           <TextInput label={"Rarity:"} value={jokerInfo.rarity} onChange={(e) => setJokerInfo(MVRC(jokerInfo, "rarity", e.target.value))} />
-          <TextAreaInput label={"Description:"} value={jokerInfo.desc} onChange={(e) => setJokerInfo(MVRC(jokerInfo, "desc", e.target.value))} />
+          <TextAreaInput
+            label={"Description:"}
+            value={jokerInfo.desc}
+            onChange={(e) => setJokerInfo(MVRC(jokerInfo, "desc", e.target.value))}
+          />
           <LabelAndSomething label={"Main Image:"}>
             <div className="flex items-center gap-3">
               <label className="inline-block rounded bg-gray-600 px-2 py-1 cursor-pointer text-white w-full pixel-corners white">
@@ -88,7 +95,11 @@ export default function JokerMaker() {
                 <input
                   className="top-0 left-0 absolute opacity-0"
                   type="file"
-                  onChange={(e) => setJokerInfo(MVRC(jokerInfo, "mainImage", event.target.files[0]))}
+                  onChange={(e) => {
+                    if (e.target && e.target.files) {
+                      setJokerInfo(MVRC(jokerInfo, "mainImage", e.target.files[0]));
+                    }
+                  }}
                 />
               </label>
               <button
@@ -106,7 +117,11 @@ export default function JokerMaker() {
                 <input
                   className="top-0 left-0 absolute opacity-0"
                   type="file"
-                  onChange={(e) => setJokerInfo(MVRC(jokerInfo, "backgroundImage", event.target.files[0]))}
+                  onChange={(e) => {
+                    if (e.target && e.target.files) {
+                      setJokerInfo(MVRC(jokerInfo, "backgroundImage", e.target.files[0]));
+                    }
+                  }}
                 />
               </label>
               <button
@@ -127,7 +142,12 @@ export default function JokerMaker() {
           </LabelAndSomething>
           <LabelAndSomething label={"Bg Color:"}>
             <div className="flex items-center ">
-              <input className={`w-[6rem] text-2xl text-black bg-white px-2 py-1 rounded-sm pixel-corners outline-none`} type="text" value={jokerInfo.backgroundColor} onChange={(e) => setJokerInfo(MVRC(jokerInfo, "backgroundColor", e.target.value))} />
+              <input
+                className={`w-[6rem] text-2xl text-black bg-white px-2 py-1 rounded-sm pixel-corners outline-none`}
+                type="text"
+                value={jokerInfo.backgroundColor}
+                onChange={(e) => setJokerInfo(MVRC(jokerInfo, "backgroundColor", e.target.value))}
+              />
               <input
                 className="p-3 pixel-corners self-end h-[4rem]"
                 type="color"
@@ -153,7 +173,7 @@ export default function JokerMaker() {
           <LabelAndSomething label={"Edition:"}>
             <select
               className="bg-white px-2 py-1 text-black rounded-sm w-full pixel-corners"
-              value={jokerInfo.overlay}
+              value={jokerInfo.overlay.key}
               onChange={(e) => setJokerInfo(MVRC(jokerInfo, "overlay", e.target.value))}
             >
               {overlayOptions.map((option) => {
@@ -173,27 +193,33 @@ export default function JokerMaker() {
               onChange={(e) => setJokerInfo(MVRC(jokerInfo, "isSmall", !jokerInfo.isSmall))}
             />
           </LabelAndSomething>
+          <LabelAndSomething label={"Disable Joker Text?"}>
+            <input
+              className="p-3 pixel-corners self-end"
+              type="checkbox"
+              checked={jokerInfo.jokerTextDisabled}
+              onChange={(e) => setJokerInfo(MVRC(jokerInfo, "jokerTextDisabled", !jokerInfo.jokerTextDisabled))}
+            />
+          </LabelAndSomething>
         </div>
-        <button className="text-white pbbo green clicky big w-full max-w-3/4 self-center" onClick={captureImage}>
-          <span className="text-4xl">Save</span>
-        </button>
-        {navigator.share && true && (
-          <button
-            className="text-white pbbo blue clicky big w-full max-w-3/4 self-center"
-            onClick={() => {
-              navigator.share({
-                title: document.title,
-                files: [new File(
-                  [jokerInfo.mainImage],
-                  "joker-image.png",
-                  { type: "image/png", lastModified: Date.now() }
-                )],
-              });
-            }}
-          >
-            <span className="text-4xl">Share</span>
+        <div className="hidden">
+          <button className="text-white pbbo green clicky big w-full max-w-3/4 self-center" onClick={captureImage}>
+            <span className="text-4xl">Save</span>
           </button>
-        )}
+          {navigator.share && true && (
+            <button
+              className="text-white pbbo blue clicky big w-full max-w-3/4 self-center"
+              onClick={() => {
+                navigator.share({
+                  title: document.title,
+                  files: [new File([jokerInfo.mainImage], "joker-image.png", { type: "image/png", lastModified: Date.now() })],
+                });
+              }}
+            >
+              <span className="text-4xl">Share</span>
+            </button>
+          )}
+        </div>
       </div>
 
       {/* Joker side */}

@@ -23,6 +23,7 @@ export default function App() {
           onClick={() => {
             const el = document.getElementById("app");
             const thisButton = document.getElementById('crtButton');
+            if (el == null || thisButton == null) return; // guard clause
             if (el.classList.contains("crt")) {
               el.classList.remove("crt");
               thisButton.innerText = "Disable CRT";
