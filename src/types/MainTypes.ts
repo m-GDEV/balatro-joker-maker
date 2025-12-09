@@ -15,6 +15,7 @@ export interface JokerInfoType {
   backgroundImage: string; // Background image of Joker card
   backgroundImageCover: boolean; // Whether the background image should cover the whole card or be contained
   backgroundColor: string; // Background color of Joker card
+  jokerTextColor: string; // Color of the 'Joker' text
   jokerTextInverted: boolean; // Whether the 'Joker' text should be inverted (white) or not (grey)
   jokerTextDisabled: boolean; // Whether to disable the Joker text
   overlay: overlayOptionsType; // Overlay effect on the card

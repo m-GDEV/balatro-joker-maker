@@ -1,4 +1,5 @@
 import { JokerInfoType } from "../types/MainTypes";
+import { invertColor } from "../lib/helperFunctions";
 
 // Main component
 export default function Joker({ jokerInfo }: { jokerInfo: JokerInfoType }) {
@@ -34,11 +35,15 @@ export default function Joker({ jokerInfo }: { jokerInfo: JokerInfoType }) {
 // Other JSX Functions
 function JokerCardSideText({ jokerInfo, isInverted }: { jokerInfo: JokerInfoType; isInverted?: boolean }) {
   return (
+    // ${isInverted ? "rotate-180" : ""}
+    // ${jokerInfo.jokerTextInverted ? ` ${invertColor(jokerInfo.jokerTextColor)} letter-outline-grey` : `text-[${jokerInfo.jokerTextColor}] letter-outline-white`}
     <div
-      className={`flex flex-col items-start ${jokerInfo.isSmall ? "text-[1.25rem]" : "text-[2rem] "}
-        ${isInverted ? "rotate-180" : ""}
-        ${jokerInfo.jokerTextInverted ? "text-white letter-outline-grey" : "text-[#4f6367] letter-outline-white"}
-        `}
+      className={`flex flex-col items-start ${jokerInfo.isSmall ? "text-[1.25rem]" : "text-[2rem] "} text-[${jokerInfo.jokerTextColor}]
+    ${isInverted ? "rotate-180" : ""}
+    ${jokerInfo.jokerTextInverted ? ` letter-outline-grey` : `letter-outline-white`}
+      
+      `}
+      style={{color: jokerInfo.jokerTextInverted ? invertColor(jokerInfo.jokerTextColor) : jokerInfo.jokerTextColor}}
     >
       <JokerText isDisabled={jokerInfo.jokerTextDisabled} />
     </div>

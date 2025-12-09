@@ -18,6 +18,7 @@ export const defaultJokerInfo: JokerInfoType = {
     backgroundImage: "", // Background image of Joker card
     backgroundImageCover: false, // Whether the background image should cover the whole card or be contained 
     backgroundColor: "#fff", // Background color of Joker card
+    jokerTextColor: "#4f6367", // Color of the 'Joker' text
     jokerTextInverted: false, // Whether the 'Joker' text should be inverted (white) or not (grey)
     jokerTextDisabled: false, // Whether to disable the Joker text
     overlay: overlayOptions[0], // Overlay effect on the card

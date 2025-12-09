@@ -81,13 +81,17 @@ export default function JokerMaker() {
             )}
           </div>
           {/* Joker info form */}
+
+          {/* Name */}
           <TextInput label={"Name:"} value={jokerInfo.name} onChange={(e) => setJokerInfo(MVRC(jokerInfo, "name", e.target.value))} />
+          {/* Rarity */}
           <TextInput label={"Rarity:"} value={jokerInfo.rarity} onChange={(e) => setJokerInfo(MVRC(jokerInfo, "rarity", e.target.value))} />
           <TextAreaInput
             label={"Description:"}
             value={jokerInfo.desc}
             onChange={(e) => setJokerInfo(MVRC(jokerInfo, "desc", e.target.value))}
           />
+          {/* Main Image */}
           <LabelAndSomething label={"Main Image:"}>
             <div className="flex items-center gap-3">
               <label className="inline-block rounded bg-gray-600 px-2 py-1 cursor-pointer text-white w-full pixel-corners white">
@@ -110,6 +114,7 @@ export default function JokerMaker() {
               </button>
             </div>
           </LabelAndSomething>
+          {/* Bg image */}
           <LabelAndSomething label={"Bg Image:"}>
             <div className="flex items-center gap-3">
               <label className="inline-block rounded bg-gray-600 px-2 py-1 cursor-pointer text-white w-full pixel-corners white">
@@ -132,6 +137,7 @@ export default function JokerMaker() {
               </button>
             </div>
           </LabelAndSomething>
+          {/* Bg image stretched */}
           <LabelAndSomething label={"Bg Image Stretched"}>
             <input
               className="p-3 pixel-corners self-end"
@@ -140,6 +146,7 @@ export default function JokerMaker() {
               onChange={(e) => setJokerInfo(MVRC(jokerInfo, "backgroundImageCover", !jokerInfo.backgroundImageCover, true))}
             />
           </LabelAndSomething>
+          {/* Bg color */}
           <LabelAndSomething label={"Bg Color:"}>
             <div className="flex items-center ">
               <input
@@ -162,7 +169,40 @@ export default function JokerMaker() {
               </button>
             </div>
           </LabelAndSomething>
-          <LabelAndSomething label={"'Joker' Text Inverted"}>
+          {/* disable joker text */}
+          <LabelAndSomething label={"Disable Joker Text?"}>
+            <input
+              className="p-3 pixel-corners self-end"
+              type="checkbox"
+              checked={jokerInfo.jokerTextDisabled}
+              onChange={(e) => setJokerInfo(MVRC(jokerInfo, "jokerTextDisabled", !jokerInfo.jokerTextDisabled))}
+            />
+          </LabelAndSomething>
+          {/* Joker color */}
+          <LabelAndSomething label={"'Joker' Color:"} >
+            <div className="flex items-center ">
+              <input
+                className={`w-[6rem] text-2xl text-black bg-white px-2 py-1 rounded-sm pixel-corners outline-none`}
+                type="text"
+                value={jokerInfo.jokerTextColor}
+                onChange={(e) => setJokerInfo(MVRC(jokerInfo, "jokerTextColor", e.target.value))}
+              />
+              <input
+                className="p-3 pixel-corners self-end h-[4rem]"
+                type="color"
+                value={jokerInfo.jokerTextColor}
+                onChange={(e) => setJokerInfo(MVRC(jokerInfo, "jokerTextColor", e.target.value))}
+              />
+              <button
+                className="pixel-corners white balatro-red px-2 py-1"
+                onClick={() => setJokerInfo(MVRC(jokerInfo, "jokerTextColor", ""))}
+              >
+                X
+              </button>
+            </div>
+          </LabelAndSomething>
+          {/* Joker color inverted */}
+          <LabelAndSomething label={"'Joker' Color Inverted"}>
             <input
               className="p-3 pixel-corners self-end"
               type="checkbox"
@@ -170,6 +210,7 @@ export default function JokerMaker() {
               onChange={(e) => setJokerInfo(MVRC(jokerInfo, "jokerTextInverted", !jokerInfo.jokerTextInverted))}
             />
           </LabelAndSomething>
+          {/* edition */}
           <LabelAndSomething label={"Edition:"}>
             <select
               className="bg-white px-2 py-1 text-black rounded-sm w-full pixel-corners"
@@ -185,6 +226,7 @@ export default function JokerMaker() {
               })}
             </select>
           </LabelAndSomething>
+          {/* wee? */}
           <LabelAndSomething label={"Wee?"}>
             <input
               className="p-3 pixel-corners self-end"
@@ -193,32 +235,6 @@ export default function JokerMaker() {
               onChange={(e) => setJokerInfo(MVRC(jokerInfo, "isSmall", !jokerInfo.isSmall))}
             />
           </LabelAndSomething>
-          <LabelAndSomething label={"Disable Joker Text?"}>
-            <input
-              className="p-3 pixel-corners self-end"
-              type="checkbox"
-              checked={jokerInfo.jokerTextDisabled}
-              onChange={(e) => setJokerInfo(MVRC(jokerInfo, "jokerTextDisabled", !jokerInfo.jokerTextDisabled))}
-            />
-          </LabelAndSomething>
-        </div>
-        <div className="hidden">
-          <button className="text-white pbbo green clicky big w-full max-w-3/4 self-center" onClick={captureImage}>
-            <span className="text-4xl">Save</span>
-          </button>
-          {navigator.share && true && (
-            <button
-              className="text-white pbbo blue clicky big w-full max-w-3/4 self-center"
-              onClick={() => {
-                navigator.share({
-                  title: document.title,
-                  files: [new File([jokerInfo.mainImage], "joker-image.png", { type: "image/png", lastModified: Date.now() })],
-                });
-              }}
-            >
-              <span className="text-4xl">Share</span>
-            </button>
-          )}
         </div>
       </div>
 
