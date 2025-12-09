@@ -13,6 +13,9 @@ export default function JokerMaker() {
 
   const [ready, setReady] = useState(false);
 
+  const [collapseBgOptions, setCollapseBgOptions] = useState(true);
+  const [collapseJokerTextOptions, setCollapseJokerTextOptions] = useState(true);
+
   useEffect(() => {
     const url = new URL(window.location.href);
     const info = url.searchParams.get("jokerInfo");
@@ -114,102 +117,124 @@ export default function JokerMaker() {
               </button>
             </div>
           </LabelAndSomething>
-          {/* Bg image */}
-          <LabelAndSomething label={"Bg Image:"}>
-            <div className="flex items-center gap-3">
-              <label className="inline-block rounded bg-gray-600 px-2 py-1 cursor-pointer text-white w-full pixel-corners white">
-                <span>Open</span>
+          {/* BG Stuff */}
+          <button
+            className="text-2xl text-white self-start hover:bg-gray-400 p-2 rounded transition-all duration-500"
+            onClick={() => setCollapseBgOptions(collapseBgOptions)}
+          >
+            {!collapseBgOptions ? "⬇️" : "⬆️"} Background Image Options
+          </button>
+          {!collapseBgOptions && (
+            <>
+              {/* Bg image */}
+              <LabelAndSomething label={"Bg Image:"} subLabel={true}>
+                <div className="flex items-center gap-3">
+                  <label className="inline-block rounded bg-gray-600 px-2 py-1 cursor-pointer text-white w-full pixel-corners white">
+                    <span>Open</span>
+                    <input
+                      className="top-0 left-0 absolute opacity-0"
+                      type="file"
+                      onChange={(e) => {
+                        if (e.target && e.target.files) {
+                          setJokerInfo(MVRC(jokerInfo, "backgroundImage", e.target.files[0]));
+                        }
+                      }}
+                    />
+                  </label>
+                  <button
+                    className="pixel-corners white balatro-red px-2 py-1"
+                    onClick={() => setJokerInfo(MVRC(jokerInfo, "backgroundImage", "", true))}
+                  >
+                    X
+                  </button>
+                </div>
+              </LabelAndSomething>
+              {/* Bg image stretched */}
+              <LabelAndSomething label={"Bg Image Stretched"} subLabel={true}>
                 <input
-                  className="top-0 left-0 absolute opacity-0"
-                  type="file"
-                  onChange={(e) => {
-                    if (e.target && e.target.files) {
-                      setJokerInfo(MVRC(jokerInfo, "backgroundImage", e.target.files[0]));
-                    }
-                  }}
+                  className="p-3 pixel-corners self-end"
+                  type="checkbox"
+                  checked={jokerInfo.backgroundImageCover}
+                  onChange={(e) => setJokerInfo(MVRC(jokerInfo, "backgroundImageCover", !jokerInfo.backgroundImageCover, true))}
                 />
-              </label>
-              <button
-                className="pixel-corners white balatro-red px-2 py-1"
-                onClick={() => setJokerInfo(MVRC(jokerInfo, "backgroundImage", "", true))}
-              >
-                X
-              </button>
+              </LabelAndSomething>
+              {/* Bg color */}
+              <LabelAndSomething label={"Bg Color:"} subLabel={true}>
+                <div className="flex items-center ">
+                  <input
+                    className={`w-[6rem] text-2xl text-black bg-white px-2 py-1 rounded-sm pixel-corners outline-none`}
+                    type="text"
+                    value={jokerInfo.backgroundColor}
+                    onChange={(e) => setJokerInfo(MVRC(jokerInfo, "backgroundColor", e.target.value))}
+                  />
+                  <input
+                    className="p-3 pixel-corners self-end h-[4rem]"
+                    type="color"
+                    value={jokerInfo.backgroundColor}
+                    onChange={(e) => setJokerInfo(MVRC(jokerInfo, "backgroundColor", e.target.value))}
+                  />
+                  <button
+                    className="pixel-corners white balatro-red px-2 py-1"
+                    onClick={() => setJokerInfo(MVRC(jokerInfo, "backgroundColor", ""))}
+                  >
+                    X
+                  </button>
+                </div>
+              </LabelAndSomething>
+            </>
+          )}
+          {/* 'Joker' Text Options */}
+          <button
+            className="text-2xl text-white self-start hover:bg-gray-400 p-2 rounded transition-all duration-500"
+            onClick={() => setCollapseJokerTextOptions(!collapseJokerTextOptions)}
+          >
+            {collapseJokerTextOptions ? "⬇️" : "⬆️"} 'Joker' Text Options
+          </button>
+          {!collapseJokerTextOptions && (
+            <div>
+              {/* disable joker text */}
+              <LabelAndSomething label={"Disable Joker Text?"} subLabel={true}>
+                <input
+                  className="p-3 pixel-corners self-end"
+                  type="checkbox"
+                  checked={jokerInfo.jokerTextDisabled}
+                  onChange={(e) => setJokerInfo(MVRC(jokerInfo, "jokerTextDisabled", !jokerInfo.jokerTextDisabled))}
+                />
+              </LabelAndSomething>
+              {/* Joker color */}
+              <LabelAndSomething subLabel={true} label={"Color:"}>
+                <div className="flex items-center ">
+                  <input
+                    className={`w-[6rem] text-2xl text-black bg-white px-2 py-1 rounded-sm pixel-corners outline-none`}
+                    type="text"
+                    value={jokerInfo.jokerTextColor}
+                    onChange={(e) => setJokerInfo(MVRC(jokerInfo, "jokerTextColor", e.target.value))}
+                  />
+                  <input
+                    className="p-3 pixel-corners self-end h-[4rem]"
+                    type="color"
+                    value={jokerInfo.jokerTextColor}
+                    onChange={(e) => setJokerInfo(MVRC(jokerInfo, "jokerTextColor", e.target.value))}
+                  />
+                  <button
+                    className="pixel-corners white balatro-red px-2 py-1"
+                    onClick={() => setJokerInfo(MVRC(jokerInfo, "jokerTextColor", ""))}
+                  >
+                    X
+                  </button>
+                </div>
+              </LabelAndSomething>
+              {/* Joker color inverted */}
+              <LabelAndSomething label={"Color Inverted:"} subLabel={true}>
+                <input
+                  className="p-3 pixel-corners self-end"
+                  type="checkbox"
+                  checked={jokerInfo.jokerTextInverted}
+                  onChange={(e) => setJokerInfo(MVRC(jokerInfo, "jokerTextInverted", !jokerInfo.jokerTextInverted))}
+                />
+              </LabelAndSomething>
             </div>
-          </LabelAndSomething>
-          {/* Bg image stretched */}
-          <LabelAndSomething label={"Bg Image Stretched"}>
-            <input
-              className="p-3 pixel-corners self-end"
-              type="checkbox"
-              checked={jokerInfo.backgroundImageCover}
-              onChange={(e) => setJokerInfo(MVRC(jokerInfo, "backgroundImageCover", !jokerInfo.backgroundImageCover, true))}
-            />
-          </LabelAndSomething>
-          {/* Bg color */}
-          <LabelAndSomething label={"Bg Color:"}>
-            <div className="flex items-center ">
-              <input
-                className={`w-[6rem] text-2xl text-black bg-white px-2 py-1 rounded-sm pixel-corners outline-none`}
-                type="text"
-                value={jokerInfo.backgroundColor}
-                onChange={(e) => setJokerInfo(MVRC(jokerInfo, "backgroundColor", e.target.value))}
-              />
-              <input
-                className="p-3 pixel-corners self-end h-[4rem]"
-                type="color"
-                value={jokerInfo.backgroundColor}
-                onChange={(e) => setJokerInfo(MVRC(jokerInfo, "backgroundColor", e.target.value))}
-              />
-              <button
-                className="pixel-corners white balatro-red px-2 py-1"
-                onClick={() => setJokerInfo(MVRC(jokerInfo, "backgroundColor", ""))}
-              >
-                X
-              </button>
-            </div>
-          </LabelAndSomething>
-          {/* disable joker text */}
-          <LabelAndSomething label={"Disable Joker Text?"}>
-            <input
-              className="p-3 pixel-corners self-end"
-              type="checkbox"
-              checked={jokerInfo.jokerTextDisabled}
-              onChange={(e) => setJokerInfo(MVRC(jokerInfo, "jokerTextDisabled", !jokerInfo.jokerTextDisabled))}
-            />
-          </LabelAndSomething>
-          {/* Joker color */}
-          <LabelAndSomething label={"'Joker' Color:"} >
-            <div className="flex items-center ">
-              <input
-                className={`w-[6rem] text-2xl text-black bg-white px-2 py-1 rounded-sm pixel-corners outline-none`}
-                type="text"
-                value={jokerInfo.jokerTextColor}
-                onChange={(e) => setJokerInfo(MVRC(jokerInfo, "jokerTextColor", e.target.value))}
-              />
-              <input
-                className="p-3 pixel-corners self-end h-[4rem]"
-                type="color"
-                value={jokerInfo.jokerTextColor}
-                onChange={(e) => setJokerInfo(MVRC(jokerInfo, "jokerTextColor", e.target.value))}
-              />
-              <button
-                className="pixel-corners white balatro-red px-2 py-1"
-                onClick={() => setJokerInfo(MVRC(jokerInfo, "jokerTextColor", ""))}
-              >
-                X
-              </button>
-            </div>
-          </LabelAndSomething>
-          {/* Joker color inverted */}
-          <LabelAndSomething label={"'Joker' Color Inverted"}>
-            <input
-              className="p-3 pixel-corners self-end"
-              type="checkbox"
-              checked={jokerInfo.jokerTextInverted}
-              onChange={(e) => setJokerInfo(MVRC(jokerInfo, "jokerTextInverted", !jokerInfo.jokerTextInverted))}
-            />
-          </LabelAndSomething>
+          )}
           {/* edition */}
           <LabelAndSomething label={"Edition:"}>
             <select
