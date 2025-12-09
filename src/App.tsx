@@ -26,10 +26,10 @@ export default function App() {
             if (el == null || thisButton == null) return; // guard clause
             if (el.classList.contains("crt")) {
               el.classList.remove("crt");
-              thisButton.innerText = "Disable CRT";
+              thisButton.innerText = "Enable CRT";
             } else {
               el.classList.add("crt");
-              thisButton.innerText = "Enable CRT";
+              thisButton.innerText = "Disable CRT";
             }
           }}
         >
