@@ -16,10 +16,10 @@ export default function App() {
     >
       <h1 className="body-text text-8xl tracking-wider letter-outline">Balatro Joker Maker</h1>
       <JokerMaker />
-      <div className="flex flex-row gap-10">
+      <footer className="flex flex-row gap-5">
         <button
           id="crtButton"
-          className="cursor-pointer px-2 py-1 bg-blue-500 text-2xl pixel-corners"
+          className="cursor-pointer px-2 py-1 text-2xl pbbo blue"
           onClick={() => {
             const el = document.getElementById("app");
             const thisButton = document.getElementById('crtButton');
@@ -35,7 +35,10 @@ export default function App() {
         >
           Enable CRT
         </button>
-      </div>
+
+        <a href="https://github.com/m-GDEV/balatro-joker-maker/issues" className=" pbbo red clicky text-2xl px-3">Feedback</a>
+        <a href="https://github.com/m-GDEV/balatro-joker-maker" className="cursor-pointer pbbo green clicky text-2xl px-3">Source Code</a>
+      </footer>
     </div>
   );
 
