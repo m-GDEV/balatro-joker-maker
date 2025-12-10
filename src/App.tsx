@@ -44,7 +44,7 @@ function ChooseRandomBackground() {
   const el = document.getElementById('app')
   let bgNum = Math.floor(Math.random() * (numberOfBackgrounds)) + 1;
 
-  console.log(bgNum)
+  // console.log(bgNum)
 
   return `/bg${bgNum}.webp`;
 }

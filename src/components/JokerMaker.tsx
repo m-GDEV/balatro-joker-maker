@@ -120,7 +120,7 @@ export default function JokerMaker() {
           {/* BG Stuff */}
           <button
             className="text-2xl text-white self-start hover:bg-gray-400 p-2 rounded transition-all duration-500"
-            onClick={() => setCollapseBgOptions(collapseBgOptions)}
+            onClick={() => setCollapseBgOptions(!collapseBgOptions)}
           >
             {!collapseBgOptions ? "⬇️" : "⬆️"} Background Image Options
           </button>
@@ -188,7 +188,7 @@ export default function JokerMaker() {
             className="text-2xl text-white self-start hover:bg-gray-400 p-2 rounded transition-all duration-500"
             onClick={() => setCollapseJokerTextOptions(!collapseJokerTextOptions)}
           >
-            {collapseJokerTextOptions ? "⬇️" : "⬆️"} 'Joker' Text Options
+            {!collapseJokerTextOptions ? "⬇️" : "⬆️"} 'Joker' Text Options
           </button>
           {!collapseJokerTextOptions && (
             <div>
@@ -239,8 +239,8 @@ export default function JokerMaker() {
           <LabelAndSomething label={"Edition:"}>
             <select
               className="bg-white px-2 py-1 text-black rounded-sm w-full pixel-corners"
-              value={jokerInfo.overlay.key}
-              onChange={(e) => setJokerInfo(MVRC(jokerInfo, "overlay", e.target.value))}
+              value={jokerInfo.overlay.value}
+              onChange={(e) => setJokerInfo(MVRC(jokerInfo, "overlay", overlayOptions.find((o) => o.value === e.target.value)))}
             >
               {overlayOptions.map((option) => {
                 return (

@@ -99,8 +99,9 @@ function JokerDescriptionWord({ word, fullDesc }: { word: string; fullDesc: stri
   const xMult: boolean = (word[0] == "X" || word[0] == "x") && Number.isInteger(parseInt(word[1]));
   const mult : boolean = (word[0] == "+" || word[0] == "-") && Number.isInteger(parseInt(word[1])) && fullDesc.toLocaleLowerCase().includes("mult");
   const chips: boolean = (word[0] == "+" || word[0] == "-") && Number.isInteger(parseInt(word[1])) && fullDesc.toLocaleLowerCase().includes("chips");
+  const money : boolean = (word[0] == "$" || word[0] == "-") && Number.isInteger(parseInt(word[1]));
 
-  console.log(word, xMult, mult, chips);
+  // console.log(word, xMult, mult, chips);
   return (
     <>
       <span
@@ -108,6 +109,7 @@ function JokerDescriptionWord({ word, fullDesc }: { word: string; fullDesc: stri
       ${xMult ? "text-white bg-[color:hsl(3.77,100%,62.55%)] p-0.5 rounded-sm" : ""}
       ${mult ? "text-[color:hsl(3.77,100%,62.55%)] p-0.5 rounded-sm" : ""}
       ${chips ? "text-[#0394FC] p-0.5 rounded-sm" : ""}
+      ${money ? "text-[#f5b244] p-0.5 rounded-sm" : ""}
     `}
         style={{ color: GetMappedColour(word.toLowerCase()) }}
       >
