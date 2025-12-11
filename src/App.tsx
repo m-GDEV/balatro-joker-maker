@@ -16,11 +16,11 @@ export default function App() {
         Balatro Joker Maker
       </h1>
       <JokerMaker />
-      <footer className="flex flex-row gap-5 pb-8 px-4 md:px-0 md:pb-0 items-center justify-center flex-wrap">  
+      <footer className="flex flex-row gap-5 pb-8 px-4 md:px-0 md:pb-4 items-center justify-center flex-wrap">  
         {/* Fun Features */}
         <button
           id="crtButton"
-          className="cursor-pointer px-2 py-1 text-xl md:text-2xl pbbo blue small"
+          className="cursor-pointer px-3 py-1 text-xl md:text-2xl pbbo blue small"
           onClick={() => {
             const el = document.getElementById("app");
             const thisButton = document.getElementById("crtButton");
@@ -38,7 +38,7 @@ export default function App() {
         </button>
 
         <button
-          className="text-white pbbo purple clicky small text-xl md:text-2xl px-3"
+          className="text-white pbbo purple clicky small text-xl md:text-2xl px-3 py-1"
           onClick={() => {
             let el = document.getElementById("audio") as HTMLAudioElement;
             let buttonEl = document.activeElement as HTMLButtonElement;
@@ -59,14 +59,14 @@ export default function App() {
         <a
           target="_blank"
           href="https://github.com/m-GDEV/balatro-joker-maker/issues"
-          className=" pbbo red clicky small text-xl md:text-2xl px-3"
+          className=" pbbo red clicky small text-xl md:text-2xl px-3 py-1"
         >
           Feedback
         </a>
         <a
           target="_blank"
           href="https://github.com/m-GDEV/balatro-joker-maker"
-          className="cursor-pointer pbbo green small clicky text-xl md:text-2xl px-3"
+          className="cursor-pointer pbbo green small clicky text-xl md:text-2xl px-3 py-1"
         >
           Source Code
         </a>
