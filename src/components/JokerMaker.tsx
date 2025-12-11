@@ -55,19 +55,20 @@ export default function JokerMaker() {
   }, [jokerInfo]);
 
   return (
-    <div className="body-text  flex flex-col justify-center gap-10 sm:flex-row h-[75%]">
+    <div className=" body-text  flex flex-col md:justify-center gap-5 md:gap-10 md:flex-row h-full md:h-[75%]">
       {/* Edit Joker Details Form */}
       <div className="flex flex-col gap-2 max-w-[23rem] text-center bg-[#3f4a4d] p-5 rounded-xl pixel-corners ">
         <h2 className="text-3xl pb-">Create your custom Joker!</h2>
-        <h3 className="text-xl text-green-500">📜 Scroll for more options</h3>
+        <h3 className="md:hidden text-xl text-green-500">📜 Scroll down to see preview!</h3>
+        <h3 className="hidden md:block text-xl text-green-500">📜 Scroll for more options</h3>
         <div className="flex flex-col gap-2 overflow-y-scroll overflow-x-hidden">
           {/* Action buttons  */}
           <div className="flex flex-row gap-2  pb-2 sticky top-0 z-1 bg-[#3f4a4d]">
-            <button className="text-white pbbo red clicky big py-1 px-3 w-full" onClick={() => setJokerInfo(defaultJokerInfo)}>
-              <span className="text-4xl">Reset</span>
+            <button className="text-white pbbo red clicky small sm:big sm:py-1 px-3 w-full" onClick={() => setJokerInfo(defaultJokerInfo)}>
+              <span className="text-3xl sm:text-4xl">Reset</span>
             </button>
-            <button className="text-white pbbo green clicky big py-1 px-3 w-full" onClick={captureImage}>
-              <span className="text-4xl">Save</span>
+            <button className="text-white pbbo green clicky small sm:big sm:py-1 px-3 w-full" onClick={captureImage}>
+              <span className="text-3xl sm:text-4xl">Save</span>
             </button>
             {navigator.share && true && (
               <button
@@ -122,7 +123,7 @@ export default function JokerMaker() {
             className="text-2xl text-white self-start hover:bg-gray-400 p-2 rounded transition-all duration-500"
             onClick={() => setCollapseBgOptions(!collapseBgOptions)}
           >
-            {!collapseBgOptions ? "⬇️" : "⬆️"} Background Image Options
+            {!collapseBgOptions ? "⬇️" : "➡️"} Background Image Options
           </button>
           {!collapseBgOptions && (
             <>
@@ -188,7 +189,7 @@ export default function JokerMaker() {
             className="text-2xl text-white self-start hover:bg-gray-400 p-2 rounded transition-all duration-500"
             onClick={() => setCollapseJokerTextOptions(!collapseJokerTextOptions)}
           >
-            {!collapseJokerTextOptions ? "⬇️" : "⬆️"} 'Joker' Text Options
+            {!collapseJokerTextOptions ? "⬇️" : "➡️"} 'Joker' Text Options
           </button>
           {!collapseJokerTextOptions && (
             <div>
