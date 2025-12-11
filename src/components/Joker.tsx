@@ -5,7 +5,7 @@ import { invertColor } from "../lib/helperFunctions";
 export default function Joker({ jokerInfo }: { jokerInfo: JokerInfoType }) {
   return (
     <div
-      className={`flex flex-col gap-3 bg-[url(/bg.webp)] bg-cover bg-center bg-repeat-y p-4 rounded-xl drop-shadow-2xl w-[22rem] h-full items-center justify-evenly pixel-corners `}
+      className={`flex flex-col gap-3 bg-[url(/images/bg1.webp)] bg-cover bg-center bg-repeat-y p-4 rounded-xl drop-shadow-2xl w-[22rem] h-full items-center justify-evenly pixel-corners `}
       id="JokerDiv"
     >
       <div
