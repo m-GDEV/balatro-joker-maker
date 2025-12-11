@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import { captureImage, getImageDataUrl, MVRC, GAButtonClick } from "../lib/helperFunctions";
+import { captureImage, getImageDataUrl, MVRC, GAButtonClick, shareJokerImage } from "../lib/helperFunctions";
 import Joker from "./Joker";
 import TextInput from "./TextInput";
 import LabelAndSomething from "./LabelAndSomething";
 import TextAreaInput from "./TextAreaInput";
 import { GAButtonTypes, JokerInfoType } from "../types/MainTypes";
-import { defaultJokerInfo } from "../types/Constants";
+import { appVersion, defaultJokerInfo } from "../types/Constants";
 import { overlayOptions } from "../types/Constants";
 
 export default function JokerMaker() {
@@ -82,18 +82,12 @@ export default function JokerMaker() {
             >
               <span className="text-3xl sm:text-4xl">Save</span>
             </button>
-            {navigator.share && true && (
+            {"share" in navigator && (
               <button
-                className="text-white pbbo blue clicky big w-full max-w-3/4 self-center"
-                onClick={() => {
-                  navigator.share({
-                    title: document.title,
-                    files: [new File([jokerInfo.mainImage], "joker-image.png", { type: "image/png", lastModified: Date.now() })],
-                  });
-                  GAButtonClick(GAButtonTypes.Share);
-                }}
+                className="text-white pbbo blue clicky small sm:big sm:py-1 px-3 w-full"
+                onClick={async (e: React.MouseEvent<HTMLButtonElement>) => await shareJokerImage(e)}
               >
-                <span className="text-4xl">Share</span>
+                <span className="text-3xl sm:text-4xl">Share</span>
               </button>
             )}
           </div>
