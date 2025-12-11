@@ -1,6 +1,6 @@
 import { JokerInfoType, KeyValue, overlayOptionsType } from "./MainTypes";
 
-export const appVersion = "1.0.0";
+export const appVersion = "1.0.1";
 
 export const overlayOptions : overlayOptionsType[] = [
     { key: "None", value: "" },
