@@ -1,10 +1,18 @@
 import { useEffect } from "react";
 import JokerMaker from "./components/JokerMaker";
 import { useState } from "react";
+import ReactGA from "react-ga4";
+import { GAButtonClick } from "./lib/helperFunctions";
+import { GAButtonTypes } from "./types/MainTypes";
 
 export default function App() {
   let bg = ChooseRandomBackground();
   const [bgPath, setBgPath] = useState(bg);
+
+  useEffect(() => {
+    ReactGA.initialize('G-CTQM7XWLQC');
+    ReactGA.send({ hitType: "pageview", page: window.location.pathname });
+  }, []);
 
   return (
     <div
@@ -32,6 +40,8 @@ export default function App() {
               el.classList.add("crt");
               thisButton.innerText = "Disable CRT";
             }
+
+            GAButtonClick(GAButtonTypes.CRT);
           }}
         >
           Enable CRT
@@ -49,6 +59,8 @@ export default function App() {
               el.play();
               buttonEl.innerText = "Pause Theme Music";
             }
+
+            GAButtonClick(GAButtonTypes.Music);
           }}
         >
           Play Theme Music
@@ -60,6 +72,9 @@ export default function App() {
           target="_blank"
           href="https://github.com/m-GDEV/balatro-joker-maker/issues"
           className=" pbbo red clicky small text-xl md:text-2xl px-3 py-1"
+          onClick={() => {
+            GAButtonClick(GAButtonTypes.Feedback);
+          }}
         >
           Feedback
         </a>
@@ -67,6 +82,9 @@ export default function App() {
           target="_blank"
           href="https://github.com/m-GDEV/balatro-joker-maker"
           className="cursor-pointer pbbo green small clicky text-xl md:text-2xl px-3 py-1"
+          onClick={() => {
+            GAButtonClick(GAButtonTypes.Source);
+          }}
         >
           Source Code
         </a>

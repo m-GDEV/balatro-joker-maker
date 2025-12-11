@@ -1,7 +1,14 @@
-import * as htmlToImage from "../lib/html-to-image-dist";
+import { GAButtonTypes, JokerInfoType } from "../types/MainTypes";
+import * as htmlToImage from "./html-to-image-dist";
+import ReactGA from 'react-ga4';
 
 export function captureImage() {
-  htmlToImage.toPng(document.getElementById('JokerDiv'))
+  let el = document.getElementById('JokerDiv');
+  if (!el) {
+    console.error('Element with id "JokerDiv" not found.');
+    return;
+  }
+  htmlToImage.toPng(el)
     .then(function (dataUrl) {
       var link = document.createElement('a');
       link.download = 'joker-image.png';
@@ -13,7 +20,12 @@ export function captureImage() {
 }
 
 export function getImageDataUrl() {
-  htmlToImage.toSvg(document.getElementById('JokerDiv'))
+  let el = document.getElementById('JokerDiv');
+  if (!el) {
+    console.error('Element with id "JokerDiv" not found.');
+    return;
+  }
+  htmlToImage.toSvg(el)
     .then(function (dataUrl) {
       return dataUrl
     }).catch(function (error) {
@@ -22,13 +34,13 @@ export function getImageDataUrl() {
 }
 
 // ModifyValueAndReturnCopy: Makes it easy to modify one property of the object in a setState call
-export function MVRC(obj, key, value, imageOverride = false) {
-  let copy = structuredClone(obj);
+export function MVRC<K extends keyof JokerInfoType>(obj: JokerInfoType, key: K, value: JokerInfoType[K], imageOverride:boolean = false) {
+  let copy: JokerInfoType = structuredClone(obj);
   console.log(key, value, imageOverride)
 
   // If the value is an image, we need to encode it
-  if ((key == "mainImage" || key == "backgroundImage") && !imageOverride) {
-    copy[key] = URL.createObjectURL(value);
+  if ((key == "mainImage" || key == "backgroundImage") && !imageOverride && (value instanceof File || value instanceof Blob)) {
+    (copy as any)[key] = URL.createObjectURL(value);
   } else {
     copy[key] = value;
   }
@@ -37,7 +49,7 @@ export function MVRC(obj, key, value, imageOverride = false) {
 }
 
 // Inverts a hex color
-export function invertColor(hex) {
+export function invertColor(hex: string) {
   if (hex.indexOf('#') === 0) {
       hex = hex.slice(1);
   }
@@ -53,11 +65,20 @@ export function invertColor(hex) {
       g = (255 - parseInt(hex.slice(2, 4), 16)).toString(16),
       b = (255 - parseInt(hex.slice(4, 6), 16)).toString(16);
   // pad each with zeros and return
-  return '#' + padZero(r) + padZero(g) + padZero(b);
+  return '#' + padZero(r, 2) + padZero(g, 2) + padZero(b, 2);
 }
 
-function padZero(str, len) {
+function padZero(str: string, len: number) {
   len = len || 2;
   var zeros = new Array(len).join('0');
   return (zeros + str).slice(-len);
 }
+
+// GA functions
+
+export const GAButtonClick = (buttonName: GAButtonTypes) => {
+  ReactGA.event({
+    category: 'User',
+    action: `Clicked ${buttonName.toString()} Button`
+  });
+};

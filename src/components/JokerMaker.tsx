@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import { captureImage, getImageDataUrl, MVRC } from "../lib/helperFunctions";
+import { captureImage, getImageDataUrl, MVRC, GAButtonClick } from "../lib/helperFunctions";
 import Joker from "./Joker";
 import TextInput from "./TextInput";
 import LabelAndSomething from "./LabelAndSomething";
 import TextAreaInput from "./TextAreaInput";
-import { JokerInfoType } from "../types/MainTypes";
+import { GAButtonTypes, JokerInfoType } from "../types/MainTypes";
 import { defaultJokerInfo } from "../types/Constants";
 import { overlayOptions } from "../types/Constants";
 
@@ -64,10 +64,22 @@ export default function JokerMaker() {
         <div className="flex flex-col gap-2 overflow-y-scroll overflow-x-hidden">
           {/* Action buttons  */}
           <div className="flex flex-row gap-2  pb-2 sticky top-0 z-1 bg-[#3f4a4d]">
-            <button className="text-white pbbo red clicky small sm:big sm:py-1 px-3 w-full" onClick={() => setJokerInfo(defaultJokerInfo)}>
+            <button
+              className="text-white pbbo red clicky small sm:big sm:py-1 px-3 w-full"
+              onClick={() => {
+                setJokerInfo(defaultJokerInfo);
+                GAButtonClick(GAButtonTypes.Reset);
+              }}
+            >
               <span className="text-3xl sm:text-4xl">Reset</span>
             </button>
-            <button className="text-white pbbo green clicky small sm:big sm:py-1 px-3 w-full" onClick={captureImage}>
+            <button
+              className="text-white pbbo green clicky small sm:big sm:py-1 px-3 w-full"
+              onClick={() => {
+                captureImage();
+                GAButtonClick(GAButtonTypes.Save);
+              }}
+            >
               <span className="text-3xl sm:text-4xl">Save</span>
             </button>
             {navigator.share && true && (
@@ -78,6 +90,7 @@ export default function JokerMaker() {
                     title: document.title,
                     files: [new File([jokerInfo.mainImage], "joker-image.png", { type: "image/png", lastModified: Date.now() })],
                   });
+                  GAButtonClick(GAButtonTypes.Share);
                 }}
               >
                 <span className="text-4xl">Share</span>
@@ -241,7 +254,9 @@ export default function JokerMaker() {
             <select
               className="bg-white px-2 py-1 text-black rounded-sm w-full pixel-corners"
               value={jokerInfo.overlay.value}
-              onChange={(e) => setJokerInfo(MVRC(jokerInfo, "overlay", overlayOptions.find((o) => o.value === e.target.value)))}
+              onChange={(e) =>
+                setJokerInfo(MVRC(jokerInfo, "overlay", overlayOptions.find((o) => o.value === e.target.value) || overlayOptions[0]))
+              }
             >
               {overlayOptions.map((option) => {
                 return (
@@ -258,7 +273,10 @@ export default function JokerMaker() {
               className="p-3 pixel-corners self-end"
               type="checkbox"
               checked={jokerInfo.isSmall}
-              onChange={(e) => setJokerInfo(MVRC(jokerInfo, "isSmall", !jokerInfo.isSmall))}
+              onChange={(e) => {
+                setJokerInfo(MVRC(jokerInfo, "isSmall", !jokerInfo.isSmall));
+                GAButtonClick(GAButtonTypes.Wee);
+              }}
             />
           </LabelAndSomething>
         </div>
