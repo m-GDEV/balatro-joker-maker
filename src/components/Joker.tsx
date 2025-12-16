@@ -5,9 +5,10 @@ import { invertColor } from "../lib/helperFunctions";
 export default function Joker({ jokerInfo }: { jokerInfo: JokerInfoType }) {
   return (
     <div
-      className={`flex flex-col gap-3 bg-[url(/images/bg1.webp)] bg-cover bg-center bg-repeat-y p-4 rounded-xl drop-shadow-2xl w-[22rem] h-full items-center justify-evenly pixel-corners `}
+      className={` relative flex flex-col gap-3 bg-[url(/images/bg1.webp)] bg-cover bg-center bg-repeat-y p-4 rounded-xl drop-shadow-2xl w-[22rem] h-full items-center justify-evenly pixel-corners `}
       id="JokerDiv"
     >
+      <div className="absolute bottom-0 right-0 h-4 w-4 font-bold text-amber-400 text-xs">BJM</div>
       <div
         className={`rounded flex flex-row p-3 pixel-corners white relative bg-no-repeat bg-center
               ${jokerInfo.overlay.value == "negative-overlay" ? "negative-overlay" : ""}
