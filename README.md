@@ -52,6 +52,7 @@ This is a simple custom joker maker for [Balatro](https://en.wikipedia.org/wiki/
 </div>
 
 ### Why I Created This Project
+After playing 70+ hours of Balatro I was perusing [r/Balatro](https://reddit.com/r/Balatro) and found that creating custom jokers was very popular among fans. After a litle bit of research I found there were no **easy-to-use** and **stylized** tools to make custom jokers. I also just really liked this game and wanted to code something related to it ([Balatro Calculator](https://efhiii.github.io/balatro-calculator/?h=IADaG0NobQoAChiDFnUzqZ1A) was a big inspiration for this).
 
 ### Features
 * Create custom jokers easily online
@@ -66,16 +67,16 @@ This is a simple custom joker maker for [Balatro](https://en.wikipedia.org/wiki/
 
 
 ### Technologies Used 
-<img src="https://img.shields.io/badge/-TypeScript-3178C6?style=flat&logo=typescript&logoColor=white"/> <img src="https://img.shields.io/badge/-Google Analytics-E37400?style=flat&logo=googleanalytics&logoColor=white"/> <img src="https://img.shields.io/badge/-Create React App-09D3AC?style=flat&logo=createreactapp&logoColor=white"/> <img src="https://img.shields.io/badge/-Tailwind CSS-06B6D4?style=flat&logo=tailwindcss&logoColor=white"/> <img src="https://img.shields.io/badge/-.ENV-ECD53F?style=flat&logo=dotenv&logoColor=white"/> 
+<img src="https://img.shields.io/badge/-TypeScript-3178C6?style=flat&logo=typescript&logoColor=white"/> <img src="https://img.shields.io/badge/-Google Analytics-E37400?style=flat&logo=googleanalytics&logoColor=white"/> <img src="https://img.shields.io/badge/-Create React App-09D3AC?style=flat&logo=createreactapp&logoColor=white"/> <img src="https://img.shields.io/badge/-Tailwind CSS-06B6D4?style=flat&logo=tailwindcss&logoColor=white"/> 
 
 
 
 <!-- GETTING STARTED -->
 ## Installation
-* 1. Clone the repository
-* 2. Run `npm install`
-* 3. Run `npm run dev`
-* 4. Go to `https://localhost:5173` in your browser
+* Clone the repository
+* Run `npm install`
+* Run `npm run dev`
+* Go to `https://localhost:5173` in your browser
 
 
 <!-- CONTRIBUTING -->
