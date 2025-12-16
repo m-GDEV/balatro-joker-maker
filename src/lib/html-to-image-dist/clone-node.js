@@ -181,4 +181,3 @@ export async function cloneNode(node, options, isRoot) {
         .then((clonedNode) => decorate(node, clonedNode, options))
         .then((clonedNode) => ensureSVGSymbols(clonedNode, options));
 }
-//# sourceMappingURL=clone-node.js.map

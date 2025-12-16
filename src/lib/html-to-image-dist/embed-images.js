@@ -70,4 +70,3 @@ export async function embedImages(clonedNode, options) {
         await embedChildren(clonedNode, options);
     }
 }
-//# sourceMappingURL=embed-images.js.map

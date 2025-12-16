@@ -17,4 +17,3 @@ export function applyStyle(node, options) {
     }
     return node;
 }
-//# sourceMappingURL=apply-style.js.map

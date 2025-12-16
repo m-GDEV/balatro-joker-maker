@@ -57,4 +57,3 @@ export async function toBlob(node, options = {}) {
 export async function getFontEmbedCSS(node, options = {}) {
     return getWebFontCSS(node, options);
 }
-//# sourceMappingURL=index.js.map

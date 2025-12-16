@@ -63,4 +63,3 @@ export async function embedResources(cssText, baseUrl, options) {
     const urls = parseURLs(filteredCSSText);
     return urls.reduce((deferred, url) => deferred.then((css) => embed(css, url, baseUrl, options)), Promise.resolve(filteredCSSText));
 }
-//# sourceMappingURL=embed-resources.js.map

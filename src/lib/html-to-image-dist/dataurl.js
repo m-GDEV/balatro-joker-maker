@@ -73,4 +73,3 @@ export async function resourceToDataURL(resourceUrl, contentType, options) {
     cache[cacheKey] = dataURL;
     return dataURL;
 }
-//# sourceMappingURL=dataurl.js.map

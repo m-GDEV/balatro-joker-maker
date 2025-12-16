@@ -202,4 +202,3 @@ export async function embedWebFonts(clonedNode, options) {
         }
     }
 }
-//# sourceMappingURL=embed-webfonts.js.map

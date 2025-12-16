@@ -21,4 +21,3 @@ export function getMimeType(url) {
     const extension = getExtension(url).toLowerCase();
     return mimes[extension] || '';
 }
-//# sourceMappingURL=mimes.js.map

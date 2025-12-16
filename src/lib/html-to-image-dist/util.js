@@ -190,4 +190,3 @@ export const isInstanceOfElement = (node, instance) => {
     return (nodePrototype.constructor.name === instance.name ||
         isInstanceOfElement(nodePrototype, instance));
 };
-//# sourceMappingURL=util.js.map
