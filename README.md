@@ -43,7 +43,9 @@ This is a simple custom joker maker for [Balatro](https://en.wikipedia.org/wiki/
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-![Demo](./docs/demo.gif)
+<div align="center">
+  <img src="./docs/demo.gif" />
+</div>
 
 ## Built With
 
