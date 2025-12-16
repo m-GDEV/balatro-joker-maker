@@ -1,4 +1,5 @@
 <!-- https://github.com/othneildrew/Best-README-Template -->
+<a id="readme-top"></a>
 
 <div align="center">
 
@@ -49,7 +50,7 @@ This is a simple custom joker maker for [Balatro](https://en.wikipedia.org/wiki/
 
 ## Built With
 
-![](<img src="https://img.shields.io/badge/-TypeScript-3178C6?style=flat&logo=typescript&logoColor=white"/>) ![](<img src="https://img.shields.io/badge/-Create React App-09D3AC?style=flat&logo=createreactapp&logoColor=white"/>) ![](<img src="https://img.shields.io/badge/-Tailwind CSS-06B6D4?style=flat&logo=tailwindcss&logoColor=white"/>) ![](<img src="https://img.shields.io/badge/-.ENV-ECD53F?style=flat&logo=dotenv&logoColor=white"/>) 
+<img src="https://img.shields.io/badge/-TypeScript-3178C6?style=flat&logo=typescript&logoColor=white"/> <img src="https://img.shields.io/badge/-Create React App-09D3AC?style=flat&logo=createreactapp&logoColor=white"/> <img src="https://img.shields.io/badge/-Tailwind CSS-06B6D4?style=flat&logo=tailwindcss&logoColor=white"/> <img src="https://img.shields.io/badge/-.ENV-ECD53F?style=flat&logo=dotenv&logoColor=white"/>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
