@@ -21,6 +21,7 @@ export default function App() {
 
     ChooseRandomBackground();
     console.log(`Version: ${appVersion}`);
+    console.log(`Environment: ` + (isDev() ? "Development" : "Production"));
   }, []);
 
   return (

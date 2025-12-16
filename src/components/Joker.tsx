@@ -21,7 +21,7 @@ export default function Joker({ jokerInfo }: { jokerInfo: JokerInfoType }) {
         <div className="flex flex-row w-full">
           <JokerCardSideText jokerInfo={jokerInfo} isInverted={false} />
           <div className="flex items-center px-2 w-full justify-center ">
-            {jokerInfo.mainImage != "" && <img src={`${jokerInfo.mainImage}`} className="" />}
+            {jokerInfo.mainImage != "" && <img src={`${jokerInfo.mainImage}`} alt="Main Joker Image" className="" />}
           </div>
           <JokerCardSideText jokerInfo={jokerInfo} isInverted={true} />
         </div>
