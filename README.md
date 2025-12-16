@@ -29,7 +29,7 @@
 <!-- TABLE OF CONTENTS -->
 # Links
 * [About The Project](#about-the-project)
-* [Built With](#built-with)
+  * [Built With](#built-with)
 * [Installation](#installation)
 * [Contributing](#contributing)
 * [License](#license)
