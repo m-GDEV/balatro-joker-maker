@@ -1,6 +1,14 @@
 import { GAButtonTypes, JokerInfoType } from "../types/MainTypes";
 import * as htmlToImage from "./html-to-image-dist";
 import ReactGA from "react-ga4";
+import process from "process";
+
+const development: boolean = !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
+
+export default function isDev(): boolean
+{
+    return development;
+}
 
 export function captureImage() {
   let el = document.getElementById("JokerDiv");

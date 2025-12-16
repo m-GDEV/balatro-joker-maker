@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import JokerMaker from "./components/JokerMaker";
 import { useState } from "react";
 import ReactGA from "react-ga4";
-import { GAButtonClick } from "./lib/helperFunctions";
+import isDev, { GAButtonClick } from "./lib/helperFunctions";
 import { GAButtonTypes } from "./types/MainTypes";
 import AppFooter from "./components/AppFooter";
 import { appVersion } from "./types/Constants";
@@ -11,8 +11,14 @@ export default function App() {
   const [bgPath, setBgPath] = useState("");
 
   useEffect(() => {
-    ReactGA.initialize("G-CTQM7XWLQC");
+    // Only use google analytics in production
+    if (!isDev()) {
+      ReactGA.initialize("G-CTQM7XWLQC", { testMode: true });
+    } else {
+      ReactGA.initialize("G-CTQM7XWLQC");
+    }
     ReactGA.send({ hitType: "pageview", page: window.location.pathname });
+
     ChooseRandomBackground();
     console.log(`Version: ${appVersion}`);
   }, []);
