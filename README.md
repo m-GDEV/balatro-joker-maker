@@ -118,9 +118,13 @@ Project Link: [https://github.com/m-GDEV/balatro-joker-maker](https://github.com
 * [Pixelated corner effect in CSS](https://pixelcorners.lukeb.co.uk/?radius=6&multiplier=3&border=1&border_width=1&border_color=#ffffff)
 
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 <!-- LICENSE -->
 ## License
 
 Distributed under the GPL 3.0 License. See LICENSE for more information.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+---
+
+<sup>README version 1.0</sup>
