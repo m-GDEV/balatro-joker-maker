@@ -30,7 +30,7 @@ export default function App() {
       className="body-text flex flex-col items-center gap-5 md:gap-0 justify-around h-full md:h-dvh w-full bg-cover bg-center bg-repeat-y "
       style={{ backgroundImage: `url('${bgPath == "" ? "/images/bg1.webp" : bgPath}')` }}
     >
-      <h1 className="body-text text-4xl md:pt-0 sm:text-6xl md:text-7xl lg:text-8xl underline md:no-underline bg-[#ab5bb5] pixel-corners px-4 ">
+      <h1 className="body-text my-5 text-4xl md:my-0 bg-[#ab5bb5] px-4 pbbo purple clicky">
         Balatro Joker Maker
       </h1>
       <JokerMaker />

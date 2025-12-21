@@ -55,7 +55,7 @@ export default function JokerMaker() {
   }, [jokerInfo]);
 
   return (
-    <div className=" body-text  flex flex-col md:justify-center gap-5 md:gap-10 md:flex-row h-full md:h-[75%]">
+    <div className=" body-text  flex flex-col items-center sm:items-stretch md:justify-center gap-5 md:gap-10 md:flex-row h-full md:h-[75%]">
       {/* Edit Joker Details Form */}
       <div className="flex flex-col gap-2 max-w-[23rem] text-center bg-[#3f4a4d] p-5 rounded-xl pixel-corners ">
         <h2 className="text-3xl pb-">Create your custom Joker!</h2>

@@ -59,7 +59,7 @@ function JokerDescription({ jokerInfo }: { jokerInfo: JokerInfoType }) {
     <>
       {(jokerInfo.name != "" || jokerInfo.desc != "" || jokerInfo.rarity != "") && (
         <div className="flex flex-col gap-3 items-center bg-[#3f4a4d] w-full rounded py-3 px-2 white pixel-corners" id="Test">
-          {jokerInfo.name != "" && <span className="text-white text-5xl">{jokerInfo.name != "" ? jokerInfo.name : "Joker"}</span>}
+          {jokerInfo.name != "" && <span className="text-white text-5xl text-center">{jokerInfo.name != "" ? jokerInfo.name : "Joker"}</span>}
           {jokerInfo.desc != "" && (
             <div className="bg-white pixel-corners rounded text-[black] w-full text-center text-3xl   p-1  ">
               {jokerInfo.desc.split(" ").map((word: string, index: number) => (
@@ -96,13 +96,18 @@ function JokerText({ isDisabled }: { isDisabled?: boolean }) {
   }
 }
 
-function JokerDescriptionWord({ word, fullDesc }: { word: string; fullDesc: string }) {
+function JokerDescriptionWord({ word, fullDesc }: { word: string; fullDesc: string}) {
   const xMult: boolean = (word[0] == "X" || word[0] == "x") && Number.isInteger(parseInt(word[1]));
   const mult : boolean = (word[0] == "+" || word[0] == "-") && Number.isInteger(parseInt(word[1])) && fullDesc.toLocaleLowerCase().includes("mult");
   const chips: boolean = (word[0] == "+" || word[0] == "-") && Number.isInteger(parseInt(word[1])) && fullDesc.toLocaleLowerCase().includes("chips");
   const money : boolean = (word[0] == "$" || word[0] == "-") && Number.isInteger(parseInt(word[1]));
 
-  // console.log(word, xMult, mult, chips);
+  const hasNumber = (str: string) => {return /\d/.test(str)}; // JS regex to check if the given string has a number in it
+  // Example: 1 in 4 chance... | Check if the current thing is a number and the desction has "in" and there is another number
+  const chanceNum : boolean = (Number.isInteger(parseInt(word[0])) && fullDesc.toLocaleLowerCase().includes("in") && hasNumber(fullDesc.substring(1).toLocaleLowerCase())) // eg: the 1 in '1 in 4'
+  const chanceIn : boolean = (word.toLocaleLowerCase() == "in")// eg: the 'in' in '1 in 4'
+
+  console.log(`Word: ${word} | changeNum: ${chanceNum}| chanceIn: ${chanceIn}`)
   return (
     <>
       <span
@@ -111,6 +116,7 @@ function JokerDescriptionWord({ word, fullDesc }: { word: string; fullDesc: stri
       ${mult ? "text-[color:hsl(3.77,100%,62.55%)] p-0.5 rounded-sm" : ""}
       ${chips ? "text-[#0394FC] p-0.5 rounded-sm" : ""}
       ${money ? "text-[#f5b244] p-0.5 rounded-sm" : ""}
+      ${(chanceNum || chanceIn) ? "text-[#35BD86] p-0.5 rounded-sm" : ""}
     `}
         style={{ color: GetMappedColour(word.toLowerCase()) }}
       >
@@ -139,10 +145,10 @@ function GetRarityBgColor(rarity: string) {
 
 function GetMappedColour(type: string): string {
   switch (type.toLowerCase()) {
-    // case "mult":
-    //   return "#ff4c40";
-    // case "chips":
-    //   return "#0093ff";
+    case "mult":
+      return "#ff4c40";
+    case "chips":
+      return "#0093ff";
     case "tarot":
       return "#7b559c";
     case "econ":
@@ -159,12 +165,14 @@ function GetMappedColour(type: string): string {
       return "#292189";
     case "clubs":
       return "#074540";
-
     case "handType":
       return "#ff8f00";
     case "keyword":
       return "#ff8f00";
-
+    case "lucky":
+      return "FF8F00";
+    case "sucessfully":
+      return "#35BD86";
     default:
       return "";
   }
